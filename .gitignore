@@ -1,0 +1,9 @@
+# Dependencies / Node
+node_modules/
+.npm
+
+# IDE / Gemini / System
+.gemini/
+.vscode/
+.DS_Store
+Thumbs.db

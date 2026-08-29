@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV Studio Pro - កម្មវិធីបង្កើត និងរចនា CV អាជីព</title>
+
+  <!-- Google Fonts: Kantumruy Pro, Battambang, Outfit, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- html2canvas for high quality PNG export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- Application Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=13">
+  <link rel="stylesheet" href="css/templates.css?v=13">
+</head>
+<body>
+
+  <!-- Top App Navigation Bar -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-icon">
+        <i class="fa-solid fa-file-invoice"></i>
+      </div>
+      <div class="brand-text">
+        <h1>CV Studio Pro</h1>
+        <span>កម្មវិធីបង្កើត និងរចនា CV អាជីព</span>
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Coin Balance & Top Up Widget -->
+      <div class="coin-balance-pill" id="btn-open-topup" title="ចុចដើម្បីបញ្ចូលកាក់ (Top Up Coins)">
+        <i class="fa-solid fa-coins" style="color: #f59e0b;"></i>
+        <span class="user-coin-val">0</span>
+        <span>Coins</span>
+        <div class="btn-topup-mini"><i class="fa-solid fa-plus"></i></div>
+      </div>
+
+      <!-- Edit Mode Toggle -->
+      <button class="btn btn-secondary" id="btn-toggle-edit-mode" title="ប្តូររបៀបសរសេរ">
+        <i class="fa-solid fa-pen-to-square"></i>
+        <span id="edit-mode-label">សរសេរលើក្រដាស: បិទ</span>
+      </button>
+
+      <!-- Language Selector -->
+      <div class="select-wrapper">
+        <select class="custom-select" id="select-language">
+          <option value="kh">🇰🇭 ភាសាខ្មែរ</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+      </div>
+
+      <!-- Sample Profile Loader -->
+      <div class="select-wrapper">
+        <select class="custom-select" id="select-sample-profile">
+          <option value="">📂 គំរូទិន្នន័យ</option>
+          <option value="cambodian">🇰🇭 CV កម្ពុជា</option>
+          <option value="english">🇬🇧 CV អន្តរជាតិ</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+      </div>
+
+      <!-- JSON Backup & Restore -->
+      <button class="btn btn-outline" id="btn-export-json" title="រក្សាទុកទិន្នន័យជាឯកសារ">
+        <i class="fa-solid fa-floppy-disk"></i>
+      </button>
+      <label class="btn btn-outline" title="បើកទិន្នន័យចាស់">
+        <i class="fa-solid fa-folder-open"></i>
+        <input type="file" id="input-import-json" accept=".json" style="display: none;">
+      </label>
+
+      <!-- Export PNG Button -->
+      <button class="btn btn-secondary" id="btn-export-png" title="ទាញយកជារូបភាព PNG (តម្លៃ 10 កាក់)">
+        <i class="fa-solid fa-file-image"></i>
+        <span>ទាញយក PNG <small style="color: #fbbf24; font-weight: bold;">(10🪙)</small></span>
+      </button>
+
+      <!-- Print / Export PDF -->
+      <button class="btn btn-primary" id="btn-print-pdf" title="ទាញយកជាឯកសារ PDF A4 (តម្លៃ 10 កាក់)">
+        <i class="fa-solid fa-download"></i>
+        <span>ទាញយក PDF <small style="color: #fbbf24; font-weight: bold;">(10🪙)</small></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Left Editor Sidebar Panel -->
+    <aside class="app-sidebar-editor" id="sidebar-editor">
+      <!-- Tabs Navigation -->
+      <div class="editor-nav-tabs">
+        <button class="nav-tab-btn active" data-tab="tab-templates">
+          <i class="fa-solid fa-palette"></i> ស្ទីល CV
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-personal">
+          <i class="fa-solid fa-user"></i> ព័ត៌មាន
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-experience">
+          <i class="fa-solid fa-briefcase"></i> បទពិសោធន៍
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-education">
+          <i class="fa-solid fa-graduation-cap"></i> ការសិក្សា
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-skills">
+          <i class="fa-solid fa-star"></i> ជំនាញ/ភាសា
+        </button>
+        <button class="nav-tab-btn" data-tab="tab-extras">
+          <i class="fa-solid fa-award"></i> ផ្សេងៗ
+        </button>
+      </div>
+
+      <!-- Tab Contents -->
+      <div class="editor-content-pane">
+
+        <!-- TAB 1: TEMPLATES -->
+        <div class="tab-pane active" id="tab-templates">
+          <div class="direct-edit-hint">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>ជ្រើសរើសទម្រង់ Template ទាំង ២០ (20 Pro Templates) ដែលសមស្របបំផុតសម្រាប់អ្នក</span>
+          </div>
+
+          <div class="template-grid">
+            <!-- Template 1 -->
+            <div class="template-card active" data-template="charcoal">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #2b2b2b 35%, #f8fafc 35%);">
+                <i class="fa-solid fa-id-badge" style="color: #fff; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">1. Charcoal Modern</div>
+              <div class="template-desc">Siobhan Simmons Style (Dark Left Bar)</div>
+            </div>
+
+            <!-- Template 2 -->
+            <div class="template-card" data-template="timeline">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #333 33%, #fff 33%);">
+                <i class="fa-solid fa-timeline" style="color: #60a5fa; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">2. Minimal Timeline</div>
+              <div class="template-desc">Jane Smith Style (Timeline Connectors)</div>
+            </div>
+
+            <!-- Template 3 -->
+            <div class="template-card" data-template="executive">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #173b45 35%, #d4af37 38%, #ffffff 40%);">
+                <i class="fa-solid fa-crown" style="color: #d4af37; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">3. Executive Teal & Gold</div>
+              <div class="template-desc">Larry Tibbetts Style (Gold Ribbons)</div>
+            </div>
+
+            <!-- Template 4 -->
+            <div class="template-card" data-template="infographic">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #172a45 40%, #ffffff 40%);">
+                <i class="fa-solid fa-chart-pie" style="color: #f59e0b; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">4. Navy Infographic</div>
+              <div class="template-desc">Juliana Silva Style (Skill Bars & Donut)</div>
+            </div>
+
+            <!-- Template 5 -->
+            <div class="template-card" data-template="blackgold">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #ffffff 50%, #111111 50%);">
+                <i class="fa-solid fa-bolt" style="color: #f59e0b; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">5. Black & Gold Contrast</div>
+              <div class="template-desc">Modern Bold Dual-Tone Design</div>
+            </div>
+
+            <!-- Template 6 -->
+            <div class="template-card" data-template="geometric">
+              <div class="template-badge-img" style="background: linear-gradient(135deg, #4b5563 40%, #fca590 40%);">
+                <i class="fa-solid fa-shapes" style="color: #fca590; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">6. Peach Geometric</div>
+              <div class="template-desc">Katie Slater Style (Segmented Skills)</div>
+            </div>
+
+            <!-- Template 7 -->
+            <div class="template-card" data-template="cobalt">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #0f4c81 40%, #ffffff 40%);">
+                <i class="fa-solid fa-layer-group" style="color: #38bdf8; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">7. Cobalt Blue Pro</div>
+              <div class="template-desc">Travis Anderson Style (Badge Headers)</div>
+            </div>
+
+            <!-- Template 8 -->
+            <div class="template-card" data-template="origami">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #1e3a68 40%, #ffffff 40%);">
+                <i class="fa-solid fa-ribbon" style="color: #60a5fa; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">8. Origami Ribbons</div>
+              <div class="template-desc">Arrow Ribbon Badges & Online Socials</div>
+            </div>
+
+            <!-- Template 9 -->
+            <div class="template-card" data-template="executive_right">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #ffffff 65%, #081726 35%);">
+                <i class="fa-solid fa-user-tie" style="color: #06b6d4; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">9. Executive Right Navy</div>
+              <div class="template-desc">Roshan Mendis Style (Cyan & Dot Ratings)</div>
+            </div>
+
+            <!-- Template 10 -->
+            <div class="template-card" data-template="robert">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #334155 30%, #f1f5f9 30%, #ffffff 55%);">
+                <i class="fa-solid fa-id-card" style="color: #60a5fa; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">10. Centered Profile Modern</div>
+              <div class="template-desc">Robert James Style (Skill Sliders & Awards)</div>
+            </div>
+
+            <!-- Template 11 -->
+            <div class="template-card" data-template="jonathan">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #e5e7eb 35%, #ffffff 35%);">
+                <i class="fa-solid fa-archway" style="color: #78716c; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">11. Minimal Grey Arch</div>
+              <div class="template-desc">Jonathan Patterson Style (Hollow Timeline)</div>
+            </div>
+
+            <!-- Template 12 -->
+            <div class="template-card" data-template="matthew">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #1b3a60 25%, #e6f6f9 25%);">
+                <i class="fa-solid fa-cubes" style="color: #38bdf8; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">12. Geometric Navy Tech</div>
+              <div class="template-desc">Matthew Connors Style (Ice-Blue Capsule)</div>
+            </div>
+
+            <!-- Template 13 -->
+            <div class="template-card" data-template="thomas">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #1a2254 35%, #ffffff 35%);">
+                <i class="fa-solid fa-bars-staggered" style="color: #60a5fa; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">13. Deep Navy Blue Bands</div>
+              <div class="template-desc">Thomas Smith Style (Blue Stacked Bands)</div>
+            </div>
+
+            <!-- Template 14 -->
+            <div class="template-card" data-template="steven">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #467b97 25%, #243342 25%);">
+                <i class="fa-solid fa-table-columns" style="color: #fca590; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">14. Clean TopCV Split</div>
+              <div class="template-desc">Steven Terry Style (Teal Header & Top-Right Avatar)</div>
+            </div>
+
+            <!-- Template 15 -->
+            <div class="template-card" data-template="khmer_official">
+              <div class="template-badge-img" style="background: #ffffff; border: 2px solid #94a3b8;">
+                <i class="fa-solid fa-stamp" style="color: #dc2626; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">15. ពាក្យសុំចូលបម្រើការងារ</div>
+              <div class="template-desc">ទម្រង់ស្តង់ដាររដ្ឋបាលកម្ពុជា (Royal Standard 4x6)</div>
+            </div>
+
+            <!-- Template 16 -->
+            <div class="template-card" data-template="thy_mengleang">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #112233 35%, #ffffff 35%);">
+                <i class="fa-solid fa-timeline" style="color: #38bdf8; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">16. Thy Mengleang</div>
+              <div class="template-desc">Minimalist Tech Timeline with Bold Headline</div>
+            </div>
+
+            <!-- Template 17 -->
+            <div class="template-card" data-template="james_paras">
+              <div class="template-badge-img" style="background: linear-gradient(135deg, #111827 45%, #ffffff 45%);">
+                <i class="fa-solid fa-circle-nodes" style="color: #f59e0b; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">17. James Paras</div>
+              <div class="template-desc">Organic Droplet Frame & Modern Black Curves</div>
+            </div>
+
+            <!-- Template 18 -->
+            <div class="template-card" data-template="gustavo_green">
+              <div class="template-badge-img" style="background: linear-gradient(90deg, #1e382b 40%, #e2e8f0 40%);">
+                <i class="fa-solid fa-compass-drafting" style="color: #4ade80; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">18. Gustavo Cobeñas</div>
+              <div class="template-desc">Forest Green Architect & Stepped Geometry</div>
+            </div>
+
+            <!-- Template 19 -->
+            <div class="template-card" data-template="sadiq_navy">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #1b2e4b 30%, #ffffff 30%);">
+                <i class="fa-solid fa-sliders" style="color: #60a5fa; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">19. Sadiq Amin</div>
+              <div class="template-desc">Executive Halftone Dots & Skill Sliders</div>
+            </div>
+
+            <!-- Template 20 -->
+            <div class="template-card" data-template="blue_wave">
+              <div class="template-badge-img" style="background: linear-gradient(180deg, #0d2f57 35%, #00a8ff 35%, #00a8ff 45%, #ffffff 45%);">
+                <i class="fa-solid fa-water" style="color: #00a8ff; font-size: 24px;"></i>
+              </div>
+              <div class="template-title">20. Dynamic Blue Wave</div>
+              <div class="template-desc">Software Engineer Style (Cyan Pills & Waves)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: PERSONAL INFO -->
+        <div class="tab-pane" id="tab-personal">
+          <!-- Profile Photo Box -->
+          <div class="photo-uploader-box">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400" id="form-photo-thumb" class="photo-preview-thumb" alt="Avatar">
+            <div class="photo-upload-actions">
+              <label class="btn btn-secondary btn-sm" style="cursor: pointer;">
+                <i class="fa-solid fa-camera"></i> ប្តូររូបភាព (Upload Photo)
+                <input type="file" id="input-avatar-file" accept="image/*" style="display: none;">
+              </label>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <label style="font-size: 11px; color: var(--text-muted);">ពណ៌ផ្ទៃក្រោយរូប:</label>
+                <input type="color" id="input-photo-bg" value="#1e88e5" style="border: none; width: 26px; height: 24px; cursor: pointer; border-radius: 4px; background: transparent;">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ឈ្មោះពេញ (Full Name)</label>
+            <input type="text" class="form-input" id="input-fullname" data-model="personalInfo.fullName">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">មុខតំណែង / អាជីព (Job Title)</label>
+            <input type="text" class="form-input" id="input-jobtitle" data-model="personalInfo.jobTitle">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">លេខទូរស័ព្ទ (Phone Number)</label>
+              <input type="text" class="form-input" id="input-phone" data-model="personalInfo.phone">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" id="input-email" data-model="personalInfo.email">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Telegram</label>
+              <input type="text" class="form-input" id="input-telegram" data-model="personalInfo.telegram">
+            </div>
+            <div class="form-group">
+              <label class="form-label">LinkedIn / Portfolio Link</label>
+              <input type="text" class="form-input" id="input-linkedin" data-model="personalInfo.linkedin">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">ភេទ (Sex)</label>
+              <input type="text" class="form-input" id="input-sex" data-model="personalInfo.sex">
+            </div>
+            <div class="form-group">
+              <label class="form-label">សញ្ជាតិ (Nationality)</label>
+              <input type="text" class="form-input" id="input-nationality" data-model="personalInfo.nationality">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">ថ្ងៃខែឆ្នាំកំណើត (Date of Birth)</label>
+              <input type="text" class="form-input" id="input-dob" data-model="personalInfo.dob">
+            </div>
+            <div class="form-group">
+              <label class="form-label">ទីកន្លែងកំណើត (Place of Birth)</label>
+              <input type="text" class="form-input" id="input-pob" data-model="personalInfo.pob">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">អាសយដ្ឋានបច្ចុប្បន្ន (Current Address)</label>
+            <input type="text" class="form-input" id="input-address" data-model="personalInfo.address">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">គោលបំណង ឬសេចក្តីសង្ខេប (Summary / Objective)</label>
+            <textarea class="form-textarea" id="input-summary" data-model="personalInfo.summary" placeholder="សរសេរពិពណ៌នាអំពីគោលដៅការងារ និងចំណុចខ្លាំងរបស់អ្នក..."></textarea>
+          </div>
+        </div>
+
+        <!-- TAB 3: WORK EXPERIENCE -->
+        <div class="tab-pane" id="tab-experience">
+          <div id="experience-items-container"></div>
+          <button class="btn-add-item" id="btn-add-experience">
+            <i class="fa-solid fa-plus"></i> បន្ថែមបទពិសោធន៍ការងារ (Add Experience)
+          </button>
+        </div>
+
+        <!-- TAB 4: EDUCATION -->
+        <div class="tab-pane" id="tab-education">
+          <div id="education-items-container"></div>
+          <button class="btn-add-item" id="btn-add-education">
+            <i class="fa-solid fa-plus"></i> បន្ថែមប្រវត្តិការសិក្សា (Add Education)
+          </button>
+        </div>
+
+        <!-- TAB 5: SKILLS & LANGUAGES -->
+        <div class="tab-pane" id="tab-skills">
+          <h3 style="font-size: 13px; color: #93c5fd; margin-bottom: 12px;">ជំនាញបច្ចេកទេស & ទន់ (Skills)</h3>
+          <div id="skills-items-container"></div>
+          <button class="btn-add-item" id="btn-add-skill" style="margin-bottom: 24px;">
+            <i class="fa-solid fa-plus"></i> បន្ថែមជំនាញ (Add Skill)
+          </button>
+
+          <h3 style="font-size: 13px; color: #93c5fd; margin-bottom: 12px;">ភាសាបរទេស (Languages)</h3>
+          <div id="languages-items-container"></div>
+          <button class="btn-add-item" id="btn-add-language">
+            <i class="fa-solid fa-plus"></i> បន្ថែមភាសា (Add Language)
+          </button>
+        </div>
+
+        <!-- TAB 6: REFERENCES, AWARDS & PREFERENCES -->
+        <div class="tab-pane" id="tab-extras">
+          <h3 style="font-size: 13px; color: #93c5fd; margin-bottom: 12px;">បុគ្គលធានា (References)</h3>
+          <div id="references-items-container"></div>
+          <button class="btn-add-item" id="btn-add-reference" style="margin-bottom: 24px;">
+            <i class="fa-solid fa-plus"></i> បន្ថែមបុគ្គលធានា (Add Reference)
+          </button>
+
+          <h3 style="font-size: 13px; color: #93c5fd; margin-bottom: 12px;">ចំណង់ចំណូលចិត្ត (Preferences / Hobbies)</h3>
+          <div class="form-group">
+            <label class="form-label">បញ្ចូលចំណង់ចំណូលចិត្ត (បំបែកដោយសញ្ញាក្បៀស , )</label>
+            <input type="text" class="form-input" id="input-preferences" placeholder="បាល់ទាត់, តន្ត្រី, ការអាន...">
+          </div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Right Live Canvas Area -->
+    <main class="app-main-canvas" id="main-canvas">
+      <!-- Floating Zoom Bar -->
+      <div class="floating-canvas-bar">
+        <div class="mode-badge" id="canvas-mode-badge">
+          <i class="fa-solid fa-eye"></i> Form Sync Preview
+        </div>
+
+        <div class="mode-badge" style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); color: #cbd5e1;">
+          <i class="fa-solid fa-file-lines" style="color: #60a5fa;"></i> A4 (210 × 297 mm)
+        </div>
+
+        <div class="zoom-btn-group">
+          <button class="btn-circle" id="btn-zoom-out" title="បង្រួម (Zoom Out)"><i class="fa-solid fa-minus"></i></button>
+          <span class="zoom-val" id="zoom-value-text">75%</span>
+          <button class="btn-circle" id="btn-zoom-in" title="ពង្រីក (Zoom In)"><i class="fa-solid fa-plus"></i></button>
+          <button class="btn-circle" id="btn-zoom-fit" title="ពង្រីកឱ្យសមអេក្រង់ (Fit Screen A4)" style="width: auto; padding: 0 8px; border-radius: 12px; font-size: 11px; font-weight: 600;"><i class="fa-solid fa-expand"></i> Fit A4</button>
+          <button class="btn-circle" id="btn-zoom-reset" title="ទំហំ 100%"><i class="fa-solid fa-rotate-right"></i></button>
+        </div>
+      </div>
+
+      <!-- A4 Resume Render Container -->
+      <div class="resume-page-wrapper" id="resume-page-wrapper">
+        <div id="resume-canvas-container">
+          <!-- Template output is dynamically injected here -->
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Bakong KHQR Payment & Top-Up Modal -->
+  <div class="modal-backdrop" id="modal-bakong-payment">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-qrcode" style="color: #e11d48;"></i> បញ្ចូលកាក់តាមរយៈ Bakong KHQR</h3>
+        <button class="btn-close-modal" id="btn-close-payment-modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Coin Packages Selector -->
+        <label class="form-label" style="margin-bottom: 8px;">ជ្រើសរើសចំនួនកាក់ដែលចង់ទិញ (Coin Packages)៖</label>
+        <div class="coin-packages-grid">
+          <div class="coin-pkg-card active" data-coins="10" data-amount="0.10">
+            <div class="coin-pkg-coins">🪙 10 Coins</div>
+            <div class="coin-pkg-price">$0.10</div>
+            <div class="coin-pkg-tag">Export 1 ដង</div>
+          </div>
+          <div class="coin-pkg-card" data-coins="30" data-amount="0.30">
+            <div class="coin-pkg-coins">🪙 30 Coins</div>
+            <div class="coin-pkg-price">$0.30</div>
+            <div class="coin-pkg-tag">Export 3 ដង</div>
+          </div>
+          <div class="coin-pkg-card" data-coins="50" data-amount="0.50">
+            <div class="coin-pkg-coins">🪙 50 Coins</div>
+            <div class="coin-pkg-price">$0.50</div>
+            <div class="coin-pkg-tag">Export 5 ដង</div>
+          </div>
+          <div class="coin-pkg-card" data-coins="100" data-amount="1.00">
+            <div class="coin-pkg-coins">🪙 100 Coins</div>
+            <div class="coin-pkg-price">$1.00</div>
+            <div class="coin-pkg-tag" style="background: #e11d48;">ពេញនិយម 🔥</div>
+          </div>
+          <div class="coin-pkg-card" data-coins="200" data-amount="2.00">
+            <div class="coin-pkg-coins">🪙 200 Coins</div>
+            <div class="coin-pkg-price">$2.00</div>
+            <div class="coin-pkg-tag" style="background: #10b981;">Best Value</div>
+          </div>
+          <div class="coin-pkg-card" data-coins="500" data-amount="5.00">
+            <div class="coin-pkg-coins">🪙 500 Coins</div>
+            <div class="coin-pkg-price">$5.00</div>
+            <div class="coin-pkg-tag">VIP Pro</div>
+          </div>
+        </div>
+
+        <!-- Live KHQR Box -->
+        <div class="khqr-display-box" id="khqr-box-container">
+          <div class="khqr-banner-header">
+            <span>KHQR</span>
+            <span style="font-size: 11px; font-weight: normal; letter-spacing: 0;">Bakong Payment</span>
+          </div>
+
+          <div class="khqr-img-wrapper">
+            <div id="qr-loading-spinner" style="display: none; padding: 40px 0;">
+              <i class="fa-solid fa-spinner fa-spin" style="font-size: 32px; color: #e11d48;"></i>
+              <div style="font-size: 12px; margin-top: 10px; color: #64748b;">កំពុងបង្កើត QR Code...</div>
+            </div>
+            <img src="" id="khqr-img-element" class="khqr-img" alt="Bakong KHQR">
+          </div>
+
+          <div class="khqr-merchant-name" id="khqr-merchant-name">MN DIGITAL STORE</div>
+          <div class="khqr-amount-val" id="khqr-amount-display">$0.10 USD</div>
+          <div style="font-size: 11px; color: #64748b;" id="khqr-bill-number">Bill: INV-...</div>
+
+          <a href="#" id="khqr-deeplink-btn" target="_blank" class="btn btn-primary btn-sm" style="margin-top: 10px; display: inline-flex; text-decoration: none; font-size: 11.5px;">
+            <i class="fa-solid fa-mobile-screen-button"></i> បើកស្កេនក្នុង Bakong App
+          </a>
+        </div>
+
+        <!-- Payment Status Pulse -->
+        <div class="payment-status-pulse" id="qr-payment-status-text">
+          <div class="pulse-dot"></div>
+          <span>កំពុងរង់ចាំការស្កេនទូទាត់ប្រាក់ (Auto Check)...</span>
+        </div>
+
+        <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #94a3b8;">
+          <span>កូដផុតកំណត់ក្នុងរយៈពេល: </span><strong id="qr-countdown-timer" style="color: #fbbf24;">05:00</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Application Logic Scripts (Bundled for direct file:/// and http:// compatibility) -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>

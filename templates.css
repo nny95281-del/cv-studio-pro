@@ -1,0 +1,4383 @@
+/* ==========================================================================
+   CV STUDIO PRO - EXACT FULL-BLEED A4 PAGE CONTAINER (210mm x 297mm)
+   ========================================================================== */
+
+/* កូដសម្រាប់ទំព័រ A4 ទាំងមូល */
+.cv-page,
+.resume-page {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 0 auto;
+  padding: 0 !important;          /* ត្រូវដាក់ 0 ដាច់ខាត ដើម្បីកុំឱ្យសល់គែមស */
+  border: none !important;        /* លុបបន្ទាត់ស៊ុមខ្មៅជុំវិញចេញ */
+  box-sizing: border-box;
+  position: relative;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  color: #1f2937;
+  font-family: 'Kantumruy Pro', 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  user-select: text;
+}
+
+/* Direct-editable focus highlights */
+.resume-page [contenteditable="true"] {
+  outline: none;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  cursor: text;
+  position: relative;
+}
+.resume-page [contenteditable="true"]:hover {
+  background-color: rgba(59, 130, 246, 0.08);
+  box-shadow: 0 0 0 1.5px rgba(59, 130, 246, 0.35);
+}
+.resume-page [contenteditable="true"]:focus {
+  background-color: rgba(59, 130, 246, 0.12);
+  box-shadow: 0 0 0 2px #2563eb, 0 2px 8px rgba(37, 99, 235, 0.2);
+}
+
+/* ==========================================================================
+   TEMPLATE 1: CHARCOAL MODERN (Siobhan Simmons Style)
+   ========================================================================== */
+.cv-template-charcoal {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background-color: #ffffff;
+}
+
+.cv-template-charcoal .sidebar {
+  width: 35%;
+  height: 100%;
+  min-height: 297mm;
+  background-color: #262626;
+  color: #f1f1f1;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-charcoal .avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.cv-template-charcoal .avatar-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #404040;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.cv-template-charcoal .user-name {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 28px;
+  color: #ffffff;
+  border-bottom: 1px solid #444;
+  padding-bottom: 16px;
+}
+
+.cv-template-charcoal .sidebar-section {
+  margin-bottom: 26px;
+}
+
+.cv-template-charcoal .sidebar-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #f3f4f6;
+  border-bottom: 1.5px solid #555;
+  padding-bottom: 5px;
+  margin-bottom: 12px;
+}
+
+.cv-template-charcoal .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #d1d5db;
+  word-break: break-word;
+}
+
+.cv-template-charcoal .contact-icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background: #ffffff;
+  color: #262626;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+}
+
+.cv-template-charcoal .skill-list,
+.cv-template-charcoal .sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-template-charcoal .skill-list li,
+.cv-template-charcoal .sidebar-list li {
+  font-size: 12px;
+  color: #d1d5db;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.cv-template-charcoal .skill-list li::before,
+.cv-template-charcoal .sidebar-list li::before {
+  content: "•";
+  color: #60a5fa;
+  position: absolute;
+  left: 0;
+  font-size: 15px;
+}
+
+.cv-template-charcoal .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 40px 32px;
+  box-sizing: border-box;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.cv-template-charcoal .main-section {
+  margin-bottom: 28px;
+}
+
+.cv-template-charcoal .section-title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111827;
+  border-bottom: 2px solid #262626;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+.cv-template-charcoal .summary-text {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.cv-template-charcoal .timeline-item {
+  margin-bottom: 18px;
+}
+
+.cv-template-charcoal .timeline-period {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.cv-template-charcoal .timeline-role {
+  font-size: 14px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.cv-template-charcoal .timeline-company {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.cv-template-charcoal .timeline-highlights {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: #374151;
+  line-height: 1.55;
+}
+
+.cv-template-charcoal .timeline-highlights li {
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   TEMPLATE 2: MINIMAL TIMELINE (Jane Smith Style)
+   ========================================================================== */
+.cv-template-timeline {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background-color: #ffffff;
+}
+
+.cv-template-timeline .sidebar {
+  width: 34%;
+  height: 100%;
+  min-height: 297mm;
+  background-color: #2b2b2b;
+  color: #e5e5e5;
+  padding: 38px 22px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-timeline .avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.cv-template-timeline .avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  filter: grayscale(100%);
+}
+
+.cv-template-timeline .sidebar-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+  border-bottom: 1.5px solid #555;
+  padding-bottom: 4px;
+}
+
+.cv-template-timeline .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #d1d5db;
+  word-break: break-word;
+}
+
+.cv-template-timeline .contact-icon {
+  font-size: 12px;
+  color: #ffffff;
+  min-width: 16px;
+}
+
+.cv-template-timeline .sidebar-section {
+  margin-bottom: 24px;
+}
+
+.cv-template-timeline .education-item,
+.cv-template-timeline .reference-item {
+  margin-bottom: 14px;
+}
+
+.cv-template-timeline .edu-school,
+.cv-template-timeline .ref-name {
+  font-weight: 800;
+  font-size: 12.5px;
+  color: #ffffff;
+}
+
+.cv-template-timeline .edu-period,
+.cv-template-timeline .ref-role {
+  font-size: 11.5px;
+  color: #9ca3af;
+}
+
+.cv-template-timeline .edu-degree,
+.cv-template-timeline .ref-contact {
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.cv-template-timeline .main-content {
+  width: 66%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 38px 28px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-timeline .header {
+  margin-bottom: 22px;
+}
+
+.cv-template-timeline .user-name {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111827;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.cv-template-timeline .user-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #4b5563;
+  text-transform: uppercase;
+}
+
+.cv-template-timeline .section-header-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f3f4f6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.cv-template-timeline .section-header-icon {
+  width: 22px;
+  height: 22px;
+  background: #2b2b2b;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.cv-template-timeline .timeline-container {
+  position: relative;
+  padding-left: 20px;
+  margin-left: 10px;
+  border-left: 2.5px solid #2b2b2b;
+  margin-bottom: 22px;
+}
+
+.cv-template-timeline .timeline-node {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.cv-template-timeline .timeline-node::before {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: 4px;
+  width: 11px;
+  height: 11px;
+  background: #2b2b2b;
+  border-radius: 50%;
+}
+
+.cv-template-timeline .timeline-node-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.cv-template-timeline .timeline-node-role {
+  font-size: 12px;
+  font-weight: 700;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.cv-template-timeline .timeline-node-desc {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.55;
+}
+
+.cv-template-timeline .skills-box {
+  border-left: 2.5px solid #2b2b2b;
+  border-bottom: 2.5px solid #2b2b2b;
+  padding: 12px 16px 14px 18px;
+  margin-left: 10px;
+}
+
+.cv-template-timeline .skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.cv-template-timeline .skills-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cv-template-timeline .skills-grid-item::before {
+  content: "•";
+  color: #111;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   TEMPLATE 3: EXECUTIVE TEAL & GOLD (Exact Larry Tibbetts Style)
+   ========================================================================== */
+.cv-template-executive {
+  background-color: #ffffff;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Outfit', 'Inter', sans-serif;
+}
+
+.cv-template-executive .header-banner {
+  background-color: #163942;
+  color: #ffffff;
+  padding: 22px 28px 26px 190px;
+  position: relative;
+  width: 100%;
+  margin: 0 !important;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.cv-template-executive .avatar-wrapper {
+  position: absolute;
+  top: 14px;
+  left: 24px;
+  z-index: 15;
+}
+
+.cv-template-executive .avatar-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #b89050;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.cv-template-executive .header-text-block {
+  position: relative;
+  z-index: 12;
+}
+
+.cv-template-executive .header-name {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin: 0 0 2px 0;
+  line-height: 1.15;
+}
+
+.cv-template-executive .name-gold {
+  color: #b89050;
+  margin-right: 6px;
+}
+
+.cv-template-executive .name-white {
+  color: #ffffff;
+}
+
+.cv-template-executive .header-job-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #f1f5f9;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cv-template-executive .header-summary {
+  font-size: 11px;
+  color: #e2e8f0;
+  line-height: 1.45;
+  max-width: 510px;
+  margin: 0;
+}
+
+.cv-template-executive .gold-ribbon-container {
+  position: absolute;
+  bottom: -22px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 28px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.cv-template-executive .gold-ribbon-fold {
+  position: absolute;
+  left: 165px;
+  bottom: 6px;
+  width: 35px;
+  height: 22px;
+  background: #8b6425;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 50%);
+  z-index: 1;
+}
+
+.cv-template-executive .gold-ribbon-band {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 26px;
+  background: linear-gradient(90deg, #b88b48 0%, #cfa868 35%, #b88b48 70%, #9a6f30 100%);
+  clip-path: polygon(0 0, 100% 45%, 100% 100%, 0 70%);
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.cv-template-executive .body-layout {
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: stretch;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.cv-template-executive .sidebar {
+  width: 35%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  background-color: #163942;
+  color: #ffffff;
+  padding: 34px 20px 28px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  margin: 0 !important;
+  border: none;
+}
+
+.cv-template-executive .sidebar-contact-group {
+  margin-bottom: 20px;
+}
+
+.cv-template-executive .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11.5px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.cv-template-executive .contact-icon {
+  color: #ffffff;
+  font-size: 13px;
+  width: 16px;
+  text-align: center;
+}
+
+.cv-template-executive .sidebar-section {
+  margin-bottom: 18px;
+}
+
+.cv-template-executive .sidebar-pill-title {
+  border: 2px solid #b89050;
+  border-radius: 20px;
+  padding: 4px 12px;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+  background: transparent;
+}
+
+.cv-template-executive .sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-template-executive .sidebar-list li {
+  font-size: 11.5px;
+  color: #ffffff;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-template-executive .sidebar-list li::before {
+  content: "▪";
+  color: #ffffff;
+  font-size: 11px;
+}
+
+.cv-template-executive .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 100%;
+  padding: 26px 30px 40px 30px;
+  box-sizing: border-box;
+  align-self: stretch;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  color: #111827;
+}
+
+.cv-template-executive .main-pill-header {
+  margin-bottom: 12px;
+}
+
+.cv-template-executive .main-gold-pill {
+  background: #b88b48;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 6px 20px;
+  text-align: center;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: block;
+  width: 82%;
+  margin: 0 auto;
+}
+
+.cv-template-executive .job-item {
+  margin-bottom: 14px;
+}
+
+.cv-template-executive .job-role {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.cv-template-executive .job-meta {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+
+.cv-template-executive .job-duties {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.cv-template-executive .job-duties li {
+  font-size: 11.5px;
+  color: #1f2937;
+  margin-bottom: 3px;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.cv-template-executive .job-duties li::before {
+  content: "▪";
+  color: #000000;
+  position: absolute;
+  left: 0;
+  font-size: 10px;
+}
+
+.cv-template-executive .edu-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-executive .edu-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.cv-template-executive .edu-sub {
+  font-size: 11.5px;
+  color: #4b5563;
+  margin-top: 1px;
+}
+
+.cv-template-executive .bottom-gold-accent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, #163942 35%, #b88b48 35%, #cfa868 100%);
+  z-index: 10;
+}
+
+/* ==========================================================================
+   TEMPLATE 4: CAMBODIAN CLASSIC STANDARD (Exact Original Kaing SongLay Style)
+   ========================================================================== */
+.cv-template-cambodian {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  padding: 10mm 12mm !important;
+  box-sizing: border-box;
+  background: #ffffff;
+  font-family: 'Times New Roman', Times, 'Kantumruy Pro', serif;
+  overflow: hidden;
+  color: #000000;
+  display: block;
+}
+
+.cv-template-cambodian .border-frame {
+  border: 2px solid #000000;
+  outline: 1px solid #000000;
+  outline-offset: 4px;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  padding: 18px 24px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.cv-template-cambodian .main-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0 0 10px 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.cv-template-cambodian .section-block {
+  margin-bottom: 8px;
+}
+
+.cv-template-cambodian .section-ribbon {
+  background: #5b9bd5;
+  color: #000000;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 28px 3px 10px;
+  display: inline-block;
+  margin-bottom: 6px;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.cv-template-cambodian .personal-data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cv-template-cambodian .personal-table {
+  width: 78%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #000000;
+  line-height: 1.5;
+  font-family: 'Times New Roman', Times, 'Kantumruy Pro', serif;
+}
+
+.cv-template-cambodian .personal-table td {
+  padding: 2px 0;
+  vertical-align: top;
+}
+
+.cv-template-cambodian .personal-table td.lbl {
+  width: 22%;
+  font-weight: normal;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.cv-template-cambodian .personal-table td.cln {
+  width: 3%;
+  text-align: center;
+}
+
+.cv-template-cambodian .personal-table td.val {
+  width: 34%;
+  color: #000000;
+}
+
+.cv-template-cambodian .personal-table td.lbl-r {
+  width: 19%;
+  font-weight: normal;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.cv-template-cambodian .personal-table td.val-r {
+  width: 19%;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.cv-template-cambodian .email-link {
+  color: #0563c1;
+  text-decoration: underline;
+}
+
+.cv-template-cambodian .passport-photo-wrapper {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.cv-template-cambodian .passport-photo {
+  width: 95px;
+  height: 125px;
+  border: 1px solid #000000;
+  object-fit: cover;
+  background-color: #1e88e5;
+}
+
+.cv-template-cambodian .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #000000;
+  font-family: 'Times New Roman', Times, 'Kantumruy Pro', serif;
+}
+
+.cv-template-cambodian .data-table td {
+  padding: 2px 0;
+  vertical-align: top;
+}
+
+.cv-template-cambodian .data-table td.year-col {
+  width: 22%;
+  color: #000000;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+.cv-template-cambodian .data-table td.cln {
+  width: 3%;
+  text-align: center;
+}
+
+.cv-template-cambodian .data-table td.content-col {
+  width: 75%;
+  color: #000000;
+}
+
+.cv-template-cambodian .preferences-row {
+  font-size: 12px;
+  color: #000000;
+  line-height: 1.5;
+  padding-left: 2px;
+  font-family: 'Times New Roman', Times, 'Kantumruy Pro', serif;
+}
+
+/* ==========================================================================
+   TEMPLATE 5: CREATIVE INFOGRAPHIC NAVY (Juliana Silva Style)
+   ========================================================================== */
+.cv-template-infographic {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background-color: #ffffff;
+}
+
+.cv-template-infographic .sidebar {
+  width: 38%;
+  height: 100%;
+  min-height: 297mm;
+  background-color: #172a45;
+  color: #ffffff;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-infographic .avatar-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.cv-template-infographic .avatar-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3.5px solid #ffffff;
+  padding: 3px;
+  position: relative;
+}
+
+.cv-template-infographic .avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.cv-template-infographic .sidebar-capsule-title {
+  border: 1.5px solid #ffffff;
+  border-radius: 20px;
+  padding: 4px 14px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.cv-template-infographic .sidebar-section {
+  margin-bottom: 20px;
+}
+
+.cv-template-infographic .about-text {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #cbd5e1;
+  text-align: justify;
+}
+
+.cv-template-infographic .skill-bar-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-infographic .skill-bar-label {
+  font-size: 11.5px;
+  color: #f1f5f9;
+  margin-bottom: 3px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cv-template-infographic .skill-bar-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cv-template-infographic .skill-bar-fill {
+  height: 100%;
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+.cv-template-infographic .languages-gauge-grid {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.cv-template-infographic .gauge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cv-template-infographic .gauge-arc {
+  width: 48px;
+  height: 24px;
+  border-top-left-radius: 48px;
+  border-top-right-radius: 48px;
+  border: 5.5px solid #d4af37;
+  border-bottom: 0;
+  box-sizing: border-box;
+}
+
+.cv-template-infographic .gauge-name {
+  font-size: 11px;
+  color: #e2e8f0;
+  margin-top: 4px;
+}
+
+.cv-template-infographic .award-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.cv-template-infographic .award-icon {
+  font-size: 16px;
+  color: #d4af37;
+}
+
+.cv-template-infographic .award-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cv-template-infographic .award-sub {
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+.cv-template-infographic .main-content {
+  width: 62%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 30px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-infographic .header {
+  border-bottom: 2.5px solid #172a45;
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.cv-template-infographic .user-name {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #172a45;
+  line-height: 1.1;
+}
+
+.cv-template-infographic .user-title {
+  font-size: 12.5px;
+  font-style: italic;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.cv-template-infographic .main-capsule-title {
+  background: #172a45;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 4px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.cv-template-infographic .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  font-size: 11.5px;
+  color: #334155;
+  margin-bottom: 18px;
+}
+
+.cv-template-infographic .contact-grid-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-template-infographic .timeline-item {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.cv-template-infographic .timeline-date {
+  width: 25%;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #172a45;
+}
+
+.cv-template-infographic .timeline-info {
+  width: 75%;
+}
+
+.cv-template-infographic .timeline-role {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+}
+
+.cv-template-infographic .timeline-company {
+  font-size: 11.5px;
+  font-style: italic;
+  color: #64748b;
+  margin-bottom: 3px;
+}
+
+.cv-template-infographic .timeline-desc {
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   TEMPLATE 6: BLACK & GOLD CONTRAST (Modern Bold)
+   ========================================================================== */
+.cv-template-blackgold {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.cv-template-blackgold .top-accent-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85px;
+  background: #111111;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 28px;
+  box-sizing: border-box;
+}
+
+.cv-template-blackgold .gold-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.cv-template-blackgold .gold-dot {
+  width: 11px;
+  height: 11px;
+  background: #f59e0b;
+  border-radius: 50%;
+}
+
+.cv-template-blackgold .gold-bar-strip {
+  width: 100px;
+  height: 11px;
+  background: #f59e0b;
+  border-radius: 6px;
+  margin-left: 4px;
+}
+
+.cv-template-blackgold .left-col {
+  width: 50%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 24px 24px 28px 24px;
+  box-sizing: border-box;
+  background: #ffffff;
+  align-self: stretch;
+}
+
+.cv-template-blackgold .avatar-box {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  border: 4px solid #111111;
+  background: #f59e0b;
+  margin: 8px auto 22px auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.cv-template-blackgold .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-blackgold .sec-title-white {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 900;
+  color: #111111;
+  border-bottom: 2px solid #111111;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-blackgold .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.cv-template-blackgold .edu-node,
+.cv-template-blackgold .exp-node {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.cv-template-blackgold .node-dot {
+  width: 9px;
+  height: 9px;
+  background: #f59e0b;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.cv-template-blackgold .node-year {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #111;
+  min-width: 70px;
+}
+
+.cv-template-blackgold .node-content {
+  flex: 1;
+}
+
+.cv-template-blackgold .node-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #111;
+}
+
+.cv-template-blackgold .node-sub {
+  font-size: 11.5px;
+  color: #4b5563;
+}
+
+.cv-template-blackgold .right-col {
+  width: 50%;
+  height: 100%;
+  min-height: 297mm;
+  background: #0d0d0d;
+  color: #ffffff;
+  padding: 95px 24px 28px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-blackgold .user-name {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #f59e0b;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.cv-template-blackgold .user-title {
+  font-size: 12.5px;
+  color: #d1d5db;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+.cv-template-blackgold .sec-title-black {
+  font-size: 13px;
+  font-weight: 800;
+  color: #f59e0b;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.cv-template-blackgold .about-desc {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.cv-template-blackgold .skill-bar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cv-template-blackgold .skill-name {
+  font-size: 11.5px;
+  color: #e5e7eb;
+  width: 85px;
+}
+
+.cv-template-blackgold .skill-track {
+  flex: 1;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cv-template-blackgold .skill-fill-gold {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 15%;
+  background: #f59e0b;
+}
+
+/* ==========================================================================
+   TEMPLATE 7: PEACH & CHARCOAL GEOMETRIC (Katie Slater Style)
+   ========================================================================== */
+.cv-template-geometric {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background: #ffffff;
+  position: relative;
+}
+
+.cv-template-geometric .top-diag-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(115deg, #4b5563 35%, #fca590 35%);
+  z-index: 1;
+}
+
+.cv-template-geometric .sidebar {
+  width: 36%;
+  height: 100%;
+  min-height: 297mm;
+  background: #f3f4f6;
+  padding: 44px 20px 28px 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+  align-self: stretch;
+}
+
+.cv-template-geometric .avatar-wrapper {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 4px solid #fca590;
+  margin: 0 auto 14px auto;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+}
+
+.cv-template-geometric .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-geometric .user-name {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #1f2937;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cv-template-geometric .user-title {
+  font-size: 11.5px;
+  color: #6b7280;
+  text-align: center;
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+  border-bottom: 1.5px solid #fca590;
+  padding-bottom: 12px;
+}
+
+.cv-template-geometric .sidebar-sec-title {
+  font-size: 12.5px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #111827;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cv-template-geometric .sidebar-text {
+  font-size: 11.5px;
+  color: #4b5563;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.cv-template-geometric .seg-skill-bar {
+  display: flex;
+  gap: 4px;
+  height: 7px;
+  margin-bottom: 10px;
+}
+
+.cv-template-geometric .seg-block {
+  flex: 1;
+  background: #e5e7eb;
+  border-radius: 2px;
+}
+.cv-template-geometric .seg-block.filled {
+  background: #fca590;
+}
+
+.cv-template-geometric .main-content {
+  width: 64%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 130px 28px 28px 28px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 5;
+  align-self: stretch;
+}
+
+.cv-template-geometric .main-sec-title {
+  font-size: 13.5px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #1f2937;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.cv-template-geometric .dashed-timeline {
+  border-left: 2px dashed #fca590;
+  padding-left: 16px;
+  margin-left: 6px;
+  margin-bottom: 22px;
+}
+
+.cv-template-geometric .timeline-entry {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.cv-template-geometric .timeline-entry::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background: #fca590;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   TEMPLATE 8: COBALT BLUE MODERN (Travis Anderson Style)
+   ========================================================================== */
+.cv-template-cobalt {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background: #ffffff;
+}
+
+.cv-template-cobalt .sidebar {
+  width: 38%;
+  height: 100%;
+  min-height: 297mm;
+  background: #0f4c81;
+  color: #ffffff;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-cobalt .avatar-box {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  margin: 0 auto 18px auto;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+}
+
+.cv-template-cobalt .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-cobalt .sidebar-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border-bottom: 2px solid #ffffff;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-cobalt .contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  margin-bottom: 10px;
+  color: #e0f2fe;
+}
+
+.cv-template-cobalt .skill-line-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-cobalt .skill-line-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  margin-bottom: 3px;
+}
+
+.cv-template-cobalt .skill-line-track {
+  height: 6px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cv-template-cobalt .skill-line-fill {
+  height: 100%;
+  background: #38bdf8;
+}
+
+.cv-template-cobalt .main-content {
+  width: 62%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 32px 28px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-cobalt .user-name {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #0f4c81;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cv-template-cobalt .user-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.cv-template-cobalt .sec-badge-title {
+  background: #0f4c81;
+  color: #ffffff;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  display: inline-block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   TEMPLATE 9: GEOMETRIC ORIGAMI RIBBONS
+   ========================================================================== */
+.cv-template-origami {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background: #ffffff;
+}
+
+.cv-template-origami .sidebar {
+  width: 36%;
+  height: 100%;
+  min-height: 297mm;
+  background: #1e3a68;
+  color: #ffffff;
+  padding: 28px 18px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-origami .avatar-wrapper {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  margin: 0 auto 18px auto;
+  overflow: hidden;
+}
+
+.cv-template-origami .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-origami .ribbon-tab-white {
+  background: #ffffff;
+  color: #1e3a68;
+  padding: 4px 16px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  clip-path: polygon(0 0, 88% 0, 100% 50%, 88% 100%, 0 100%);
+  display: inline-block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-origami .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.cv-template-origami .main-content {
+  width: 64%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 28px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-origami .header {
+  border-bottom: 2px solid #1e3a68;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.cv-template-origami .user-name {
+  font-size: 26px;
+  font-weight: 900;
+  color: #1e3a68;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cv-template-origami .user-title {
+  font-size: 12px;
+  color: #64748b;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.cv-template-origami .ribbon-tab-blue {
+  background: #1e3a68;
+  color: #ffffff;
+  padding: 4px 20px 4px 12px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+  display: inline-block;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   TEMPLATE 10: EXECUTIVE RIGHT SIDEBAR (Roshan Mendis Style)
+   ========================================================================== */
+.cv-template-executive-right {
+  display: flex;
+  height: 100%;
+  min-height: 297mm;
+  max-height: 297mm;
+  background: #ffffff;
+}
+
+.cv-template-executive-right .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 297mm;
+  padding: 28px 24px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-executive-right .header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.cv-template-executive-right .avatar-wrapper {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #06b6d4;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cv-template-executive-right .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-executive-right .user-name {
+  font-size: 26px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.cv-template-executive-right .user-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0284c7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cv-template-executive-right .bar-sec-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #0f172a;
+  text-transform: uppercase;
+  border-left: 4.5px solid #0f172a;
+  padding-left: 8px;
+  margin-bottom: 12px;
+}
+
+.cv-template-executive-right .sidebar-right {
+  width: 35%;
+  height: 100%;
+  min-height: 297mm;
+  background: #081726;
+  color: #ffffff;
+  padding: 28px 20px;
+  box-sizing: border-box;
+  align-self: stretch;
+}
+
+.cv-template-executive-right .sidebar-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  border-bottom: 1.5px solid rgba(255,255,255,0.2);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-executive-right .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.cv-template-executive-right .contact-icon {
+  color: #38bdf8;
+  font-size: 11px;
+}
+
+.cv-template-executive-right .rating-dots {
+  display: flex;
+  gap: 5px;
+}
+
+.cv-template-executive-right .rating-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #334155;
+}
+.cv-template-executive-right .rating-dot.active {
+  background: #38bdf8;
+}
+
+.cv-template-executive-right .cyan-skill-bar {
+  height: 5px;
+  background: #1e293b;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.cv-template-executive-right .cyan-skill-fill {
+  height: 100%;
+  background: #38bdf8;
+}
+
+/* ==========================================================================
+   TEMPLATE 11: CENTERED PROFILE MODERN (Robert James Style)
+   ========================================================================== */
+.cv-template-robert {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cv-template-robert .top-header-banner {
+  background: #334155;
+  color: #ffffff;
+  text-align: center;
+  padding: 22px 20px 30px;
+  flex-shrink: 0;
+}
+
+.cv-template-robert .user-name {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 3px;
+}
+
+.cv-template-robert .user-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #cbd5e1;
+  text-transform: uppercase;
+}
+
+.cv-template-robert .contact-avatar-bar {
+  background: #f1f5f9;
+  border-bottom: 1.5px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cv-template-robert .avatar-center-wrapper {
+  position: absolute;
+  top: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  overflow: hidden;
+  background: #ffffff;
+  z-index: 10;
+}
+
+.cv-template-robert .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-robert .contact-left,
+.cv-template-robert .contact-right {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #475569;
+}
+
+.cv-template-robert .contact-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.cv-template-robert .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cv-template-robert .contact-item i {
+  color: #334155;
+  font-size: 11px;
+}
+
+.cv-template-robert .main-columns-layout {
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  height: 100%;
+  align-items: stretch;
+}
+
+.cv-template-robert .left-column {
+  width: 38%;
+  height: 100%;
+  min-height: 100%;
+  background: #f8fafc;
+  padding: 24px 18px;
+  border-right: 1.5px solid #e2e8f0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.cv-template-robert .right-column {
+  width: 62%;
+  height: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  padding: 24px 22px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.cv-template-robert .sec-block {
+  margin-bottom: 20px;
+}
+
+.cv-template-robert .sec-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #1e293b;
+  border-bottom: 1.5px solid #cbd5e1;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-robert .icon-badge {
+  color: #334155;
+  font-size: 12px;
+}
+
+.cv-template-robert .summary-text {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.cv-template-robert .skill-slider-row {
+  margin-bottom: 8px;
+}
+
+.cv-template-robert .skill-slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 2px;
+}
+
+.cv-template-robert .skill-slider-track {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cv-template-robert .skill-slider-fill {
+  height: 100%;
+  background: #334155;
+}
+
+.cv-template-robert .award-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-robert .award-name {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.cv-template-robert .award-meta {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.cv-template-robert .timeline-tree {
+  border-left: 2px solid #334155;
+  padding-left: 14px;
+  margin-left: 6px;
+}
+
+.cv-template-robert .tree-node {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.cv-template-robert .node-bullet {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background: #334155;
+  border-radius: 50%;
+}
+
+.cv-template-robert .node-left {
+  width: 35%;
+  padding-right: 8px;
+}
+
+.cv-template-robert .node-degree {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.cv-template-robert .node-right {
+  width: 65%;
+}
+
+.cv-template-robert .node-right-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.cv-template-robert .node-school {
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.cv-template-robert .arrow-badge {
+  background: #1e293b;
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 2px 8px 2px 6px;
+  clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
+}
+
+.cv-template-robert .node-desc {
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.45;
+}
+
+.cv-template-robert .hobbies-icon-strip {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.cv-template-robert .hobby-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  color: #475569;
+}
+
+.cv-template-robert .hobby-icon-item i {
+  font-size: 16px;
+  color: #334155;
+}
+
+/* ==========================================================================
+   TEMPLATE 12: MINIMAL GREY ARCH (Jonathan Patterson Style)
+   ========================================================================== */
+.cv-template-jonathan {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  display: flex;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cv-template-jonathan .sidebar {
+  width: 35%;
+  height: 100%;
+  min-height: 297mm;
+  background: #e5e7eb;
+  color: #1f2937;
+  padding: 0 20px 24px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.cv-template-jonathan .arch-avatar-wrapper {
+  width: 100%;
+  height: 160px;
+  background: #6b7280;
+  border-bottom-left-radius: 75px;
+  border-bottom-right-radius: 75px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.cv-template-jonathan .arch-avatar-wrapper .avatar-img {
+  width: 115px;
+  height: 140px;
+  border-radius: 55px 55px 0 0;
+  object-fit: cover;
+  border: 3.5px solid #ffffff;
+}
+
+.cv-template-jonathan .side-sec {
+  margin-bottom: 18px;
+}
+
+.cv-template-jonathan .side-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #111827;
+  border-bottom: 1.5px solid #9ca3af;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.cv-template-jonathan .edu-box {
+  margin-bottom: 10px;
+}
+
+.cv-template-jonathan .edu-period {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.cv-template-jonathan .edu-degree {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.cv-template-jonathan .edu-school {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.cv-template-jonathan .bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-template-jonathan .bullet-list li {
+  font-size: 11.5px;
+  color: #374151;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.cv-template-jonathan .bullet-list li::before {
+  content: "•";
+  color: #111;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.cv-template-jonathan .contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.cv-template-jonathan .contact-row i {
+  color: #111827;
+  font-size: 11px;
+}
+
+.cv-template-jonathan .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 297mm;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.cv-template-jonathan .header-box {
+  background: #6b7280;
+  color: #ffffff;
+  padding: 30px 28px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.cv-template-jonathan .user-name {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.cv-template-jonathan .user-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #e5e7eb;
+  text-transform: uppercase;
+}
+
+.cv-template-jonathan .body-content {
+  padding: 26px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-template-jonathan .main-sec {
+  margin-bottom: 22px;
+}
+
+.cv-template-jonathan .main-sec-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #111827;
+  border-bottom: 1.5px solid #d1d5db;
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.cv-template-jonathan .hollow-timeline {
+  border-left: 2px solid #6b7280;
+  padding-left: 18px;
+  margin-left: 8px;
+}
+
+.cv-template-jonathan .hollow-node {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.cv-template-jonathan .hollow-dot {
+  position: absolute;
+  left: -24px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border: 2.5px solid #6b7280;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.cv-template-jonathan .hollow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cv-template-jonathan .role-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.cv-template-jonathan .period-text {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.cv-template-jonathan .company-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.cv-template-jonathan .desc-text {
+  font-size: 12px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.cv-template-jonathan .achievement-grid {
+  display: flex;
+  gap: 14px;
+}
+
+.cv-template-jonathan .achieve-card {
+  flex: 1;
+  background: #f9fafb;
+  border-left: 3px solid #6b7280;
+  padding: 10px 12px;
+  border-radius: 4px;
+}
+
+.cv-template-jonathan .achieve-period {
+  font-size: 11px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 3px;
+}
+
+.cv-template-jonathan .achieve-desc {
+  font-size: 11.5px;
+  color: #4b5563;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   TEMPLATE 13: GEOMETRIC NAVY & CYAN TECH (Matthew Connors Style)
+   ========================================================================== */
+.cv-template-matthew {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cv-template-matthew .top-geo-banner {
+  background: #1b3a60;
+  color: #ffffff;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cv-template-matthew .geo-pattern-decor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 140px;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.08), rgba(255,255,255,0.08) 2px, transparent 2px, transparent 6px);
+}
+
+.cv-template-matthew .banner-avatar-wrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3.5px solid #ffffff;
+  z-index: 5;
+  flex-shrink: 0;
+  margin-right: 22px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.cv-template-matthew .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-matthew .banner-text-wrap {
+  z-index: 5;
+}
+
+.cv-template-matthew .top-mini-contacts {
+  font-size: 11px;
+  color: #bae6fd;
+  margin-bottom: 4px;
+}
+
+.cv-template-matthew .user-name {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.cv-template-matthew .body-layout {
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  height: 100%;
+}
+
+.cv-template-matthew .sidebar-ice {
+  width: 35%;
+  height: 100%;
+  min-height: 100%;
+  background: #e6f6f9;
+  color: #1b3a60;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-matthew .capsule-header {
+  background: #1b3a60;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 4px 14px;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.cv-template-matthew .ice-sec {
+  margin-bottom: 20px;
+}
+
+.cv-template-matthew .ice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-template-matthew .ice-list li {
+  font-size: 11.5px;
+  color: #1e3a5f;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.cv-template-matthew .ice-list li::before {
+  content: "•";
+  color: #1b3a60;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.cv-template-matthew .lang-row {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1b3a60;
+}
+
+.cv-template-matthew .main-white {
+  width: 65%;
+  height: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-matthew .capsule-header-dark {
+  background: #1b3a60;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 4px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.cv-template-matthew .exp-item {
+  margin-bottom: 14px;
+}
+
+.cv-template-matthew .exp-date {
+  font-size: 11px;
+  color: #0284c7;
+  font-weight: 700;
+}
+
+.cv-template-matthew .exp-company {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.cv-template-matthew .exp-role {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-matthew .exp-desc {
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.cv-template-matthew .ref-grid {
+  display: flex;
+  gap: 14px;
+}
+
+.cv-template-matthew .ref-box {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.cv-template-matthew .ref-name {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-matthew .ref-role {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.cv-template-matthew .ref-contact {
+  font-size: 11px;
+  color: #0284c7;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   TEMPLATE 14: DEEP NAVY & BLUE BANDS (Thomas Smith Style)
+   ========================================================================== */
+.cv-template-thomas {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  display: flex;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cv-template-thomas .sidebar {
+  width: 35%;
+  height: 100%;
+  min-height: 297mm;
+  background: #1a2254;
+  color: #ffffff;
+  padding: 26px 0;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-thomas .avatar-box {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  margin: 0 auto 18px auto;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.cv-template-thomas .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-thomas .blue-band {
+  background: #2d3b82;
+  color: #ffffff;
+  padding: 7px 18px;
+  font-size: 11.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+.cv-template-thomas .side-bio-box {
+  padding: 16px 18px;
+}
+
+.cv-template-thomas .bio-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.cv-template-thomas .bio-desc {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.cv-template-thomas .side-section {
+  margin-bottom: 14px;
+}
+
+.cv-template-thomas .blue-title-banner {
+  background: #2d3b82;
+  color: #ffffff;
+  padding: 5px 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cv-template-thomas .side-bullets {
+  list-style: none;
+  padding: 0 18px;
+  margin: 0;
+}
+
+.cv-template-thomas .side-bullets li {
+  font-size: 11.5px;
+  color: #e2e8f0;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 14px;
+}
+
+.cv-template-thomas .side-bullets li::before {
+  content: "▪";
+  color: #60a5fa;
+  position: absolute;
+  left: 0;
+}
+
+.cv-template-thomas .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 297mm;
+  background: #ffffff;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-thomas .header-box {
+  margin-bottom: 18px;
+}
+
+.cv-template-thomas .user-name {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #1a2254;
+  text-transform: uppercase;
+}
+
+.cv-template-thomas .main-sec {
+  margin-bottom: 18px;
+}
+
+.cv-template-thomas .sec-banner-title {
+  background: #e2e8f0;
+  color: #1a2254;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cv-template-thomas .exp-node {
+  margin-bottom: 12px;
+}
+
+.cv-template-thomas .exp-role {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-thomas .exp-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.cv-template-thomas .duty-bullets {
+  list-style: none;
+  padding-left: 14px;
+  margin: 0;
+}
+
+.cv-template-thomas .duty-bullets li {
+  font-size: 11.5px;
+  color: #334155;
+  margin-bottom: 3px;
+  position: relative;
+  padding-left: 10px;
+}
+
+.cv-template-thomas .duty-bullets li::before {
+  content: "▪";
+  color: #111;
+  position: absolute;
+  left: 0;
+  font-size: 10px;
+}
+
+.cv-template-thomas .edu-node {
+  margin-bottom: 8px;
+}
+
+.cv-template-thomas .edu-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-thomas .edu-school {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+/* ==========================================================================
+   TEMPLATE 15: CLEAN TOPCV SPLIT (Steven Terry Style)
+   ========================================================================== */
+.cv-template-steven {
+  width: 210mm;
+  height: 297mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.cv-template-steven .top-teal-banner {
+  background: #467b97;
+  color: #ffffff;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 115px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.cv-template-steven .user-name {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.cv-template-steven .user-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #e0f2fe;
+  text-transform: uppercase;
+}
+
+.cv-template-steven .banner-avatar-wrap {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 4px solid #fca590;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+
+.cv-template-steven .avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cv-template-steven .body-layout {
+  display: flex;
+  flex: 1 1 0%;
+  min-height: 0;
+  height: 100%;
+}
+
+.cv-template-steven .sidebar {
+  width: 35%;
+  height: 100%;
+  min-height: 100%;
+  background: #243342;
+  color: #ffffff;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-steven .meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #e2e8f0;
+  margin-bottom: 7px;
+}
+
+.cv-template-steven .meta-row i {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.cv-template-steven .side-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 12px 0;
+}
+
+.cv-template-steven .side-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.cv-template-steven .skill-item {
+  margin-bottom: 6px;
+}
+
+.cv-template-steven .skill-head {
+  font-size: 11.5px;
+  color: #f1f5f9;
+}
+
+.cv-template-steven .skill-sub {
+  font-size: 10px;
+  color: #94a3b8;
+  padding-left: 12px;
+}
+
+.cv-template-steven .award-box,
+.cv-template-steven .cert-box {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.cv-template-steven .main-content {
+  width: 65%;
+  height: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.cv-template-steven .main-sec {
+  margin-bottom: 18px;
+}
+
+.cv-template-steven .sec-underline-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #243342;
+  border-bottom: 2px solid #243342;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.cv-template-steven .edu-item,
+.cv-template-steven .exp-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-steven .edu-header,
+.cv-template-steven .exp-header,
+.cv-template-steven .activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: #0f172a;
+}
+
+.cv-template-steven .edu-date,
+.cv-template-steven .exp-date,
+.cv-template-steven .activity-date {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.cv-template-steven .edu-degree,
+.cv-template-steven .exp-role {
+  font-size: 11.5px;
+  color: #475569;
+  padding-left: 12px;
+}
+
+.cv-template-steven .exp-desc,
+.cv-template-steven .activity-desc {
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.45;
+  padding-left: 12px;
+}
+
+/* ==========================================================================
+   TEMPLATE 16: KHMER OFFICIAL JOB APPLICATION (ពាក្យសុំចូលបម្រើការងារ)
+   ========================================================================== */
+.cv-template-khmer-official {
+  background-color: #ffffff;
+  padding: 24mm 20mm 20mm 20mm !important;
+  color: #1e293b;
+  font-family: 'Kantumruy Pro', 'Battambang', sans-serif;
+  line-height: 1.6;
+}
+
+.cv-template-khmer-official .official-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cv-template-khmer-official .official-kingdom-center {
+  flex: 1;
+  text-align: center;
+  padding-left: 60px; /* offset for right photo balance */
+}
+
+.cv-template-khmer-official .kingdom-line-1 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.5px;
+}
+
+.cv-template-khmer-official .kingdom-line-2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.cv-template-khmer-official .kingdom-flower {
+  font-size: 10px;
+  color: #64748b;
+  margin: 4px 0 10px 0;
+  letter-spacing: 3px;
+}
+
+.cv-template-khmer-official .official-app-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  margin: 0;
+}
+
+.cv-template-khmer-official .official-photo-box {
+  width: 105px;
+  height: 135px;
+  border: 1px solid #cbd5e1;
+  padding: 3px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cv-template-khmer-official .official-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-template-khmer-official .official-photo-tag {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.cv-template-khmer-official .official-sec {
+  margin-bottom: 14px;
+}
+
+.cv-template-khmer-official .official-sec-title {
+  background: #f1f5f9;
+  border-left: 4px solid #475569;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.cv-template-khmer-official .official-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cv-template-khmer-official .official-table td {
+  padding: 3.5px 4px;
+  font-size: 12.5px;
+  vertical-align: top;
+}
+
+.cv-template-khmer-official .official-table td.lbl {
+  width: 145px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.cv-template-khmer-official .official-table td.cln {
+  width: 18px;
+  text-align: center;
+  font-weight: bold;
+  color: #475569;
+}
+
+.cv-template-khmer-official .official-table td.val {
+  color: #0f172a;
+}
+
+.cv-template-khmer-official .official-table td.val-bold {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   TEMPLATE 17: THY MENGLEANG (Tech Minimalist Hollow Timeline)
+   ========================================================================== */
+.cv-template-thy-mengleang {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+}
+
+.cv-template-thy-mengleang .thy-top-header {
+  display: flex;
+  height: 195px;
+  background: #ffffff;
+}
+
+.cv-template-thy-mengleang .thy-photo-frame {
+  width: 32%;
+  height: 100%;
+  background: #0f172a;
+  position: relative;
+  overflow: hidden;
+}
+
+.cv-template-thy-mengleang .thy-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-template-thy-mengleang .thy-name-block {
+  width: 68%;
+  padding: 30px 35px 20px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cv-template-thy-mengleang .thy-big-name {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-template-thy-mengleang .thy-summary-para {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cv-template-thy-mengleang .thy-main-cols {
+  display: flex;
+  flex: 1;
+}
+
+.cv-template-thy-mengleang .thy-sidebar {
+  width: 32%;
+  background: #112233;
+  color: #f8fafc;
+  padding: 24px 20px;
+  box-sizing: border-box;
+}
+
+.cv-template-thy-mengleang .thy-contact-group {
+  margin-bottom: 22px;
+}
+
+.cv-template-thy-mengleang .thy-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+.cv-template-thy-mengleang .thy-contact-row i {
+  color: #94a3b8;
+  width: 14px;
+}
+
+.cv-template-thy-mengleang .thy-side-sec {
+  margin-bottom: 22px;
+}
+
+.cv-template-thy-mengleang .thy-side-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.cv-template-thy-mengleang .thy-side-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-template-thy-mengleang .thy-side-list li {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 7px;
+  position: relative;
+  padding-left: 12px;
+}
+
+.cv-template-thy-mengleang .thy-side-list li::before {
+  content: '•';
+  color: #60a5fa;
+  position: absolute;
+  left: 0;
+}
+
+.cv-template-thy-mengleang .thy-side-edu-item {
+  margin-bottom: 12px;
+}
+
+.cv-template-thy-mengleang .thy-edu-deg {
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cv-template-thy-mengleang .thy-edu-sch {
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+.cv-template-thy-mengleang .thy-edu-yr {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.cv-template-thy-mengleang .thy-body-content {
+  width: 68%;
+  padding: 25px 35px;
+  background: #ffffff;
+}
+
+.cv-template-thy-mengleang .thy-main-title {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0f172a;
+  border-bottom: 1.5px solid #0f172a;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
+}
+
+.cv-template-thy-mengleang .thy-timeline-container {
+  position: relative;
+  padding-left: 20px;
+  border-left: 1.5px solid #cbd5e1;
+  margin-left: 6px;
+}
+
+.cv-template-thy-mengleang .thy-timeline-item {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.cv-template-thy-mengleang .thy-timeline-circle {
+  position: absolute;
+  left: -27px;
+  top: 3px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #0f172a;
+}
+
+.cv-template-thy-mengleang .thy-exp-role {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cv-template-thy-mengleang .thy-exp-company {
+  font-size: 11px;
+  color: #475569;
+}
+
+.cv-template-thy-mengleang .thy-exp-period {
+  font-size: 10.5px;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.cv-template-thy-mengleang .thy-exp-bullets {
+  padding-left: 15px;
+  margin: 4px 0 0 0;
+  font-size: 11px;
+  color: #334155;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   TEMPLATE 18: JAMES DANIEL PARAS (Modern Black Organic Oval Curves)
+   ========================================================================== */
+.cv-template-james-paras {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: 30px 35px !important;
+  color: #111827;
+}
+
+.cv-template-james-paras .james-blob-top-right {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  background: #111827;
+  border-radius: 45% 55% 70% 30% / 40% 60% 40% 60%;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.cv-template-james-paras .james-blob-bottom-left {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  background: #111827;
+  border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
+  pointer-events: none;
+}
+
+.cv-template-james-paras .james-header-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.cv-template-james-paras .james-photo-droplet {
+  width: 140px;
+  height: 140px;
+  border-radius: 50% 50% 50% 10% / 50% 50% 50% 10%;
+  background: #111827;
+  padding: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.cv-template-james-paras .james-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-template-james-paras .james-name {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #111827;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.cv-template-james-paras .james-jobtitle {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #4b5563;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.cv-template-james-paras .james-cols {
+  display: flex;
+  gap: 35px;
+}
+
+.cv-template-james-paras .james-col-left {
+  width: 35%;
+}
+
+.cv-template-james-paras .james-col-right {
+  width: 65%;
+}
+
+.cv-template-james-paras .james-sec-box {
+  margin-bottom: 20px;
+}
+
+.cv-template-james-paras .james-pill-header {
+  background: #111827;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+  width: calc(100% - 28px);
+  text-align: center;
+}
+
+.cv-template-james-paras .james-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11.5px;
+  color: #374151;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+.cv-template-james-paras .james-icon-circle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.cv-template-james-paras .james-bullet-list {
+  padding-left: 18px;
+  margin: 0;
+  font-size: 11.5px;
+  color: #374151;
+}
+
+.cv-template-james-paras .james-bullet-list li {
+  margin-bottom: 6px;
+}
+
+.cv-template-james-paras .james-info-table {
+  width: 100%;
+  font-size: 11.5px;
+  color: #374151;
+}
+
+.cv-template-james-paras .james-info-table td {
+  padding: 3px 0;
+}
+
+.cv-template-james-paras .james-info-table td.lbl {
+  width: 100px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.cv-template-james-paras .james-obj-text {
+  font-size: 11px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.cv-template-james-paras .james-edu-table {
+  width: 100%;
+  font-size: 11.5px;
+}
+
+.cv-template-james-paras .james-edu-table td {
+  padding: 5px 0;
+  vertical-align: top;
+}
+
+.cv-template-james-paras .james-edu-table td.yr {
+  width: 110px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cv-template-james-paras .james-bottom-bar {
+  height: 3px;
+  background: #111827;
+  margin-top: 15px;
+}
+
+/* ==========================================================================
+   TEMPLATE 19: GUSTAVO COBEÑAS (Forest Green Architecture & Stepped Accents)
+   ========================================================================== */
+.cv-template-gustavo-green {
+  display: flex;
+  height: 100%;
+  background: #ffffff;
+}
+
+.cv-template-gustavo-green .gustavo-sidebar {
+  width: 38%;
+  background: #1e382b;
+  color: #f1f5f9;
+  padding: 30px 22px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-template-gustavo-green .gustavo-photo-box {
+  width: 140px;
+  height: 155px;
+  border-radius: 0 45px 0 0;
+  overflow: hidden;
+  margin: 0 auto 20px auto;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.cv-template-gustavo-green .gustavo-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-template-gustavo-green .gustavo-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #2d4f3e;
+  padding-bottom: 14px;
+}
+
+.cv-template-gustavo-green .gustavo-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-template-gustavo-green .gustavo-side-sec {
+  margin-bottom: 18px;
+}
+
+.cv-template-gustavo-green .gustavo-sec-head {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-template-gustavo-green .gustavo-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+  word-break: break-all;
+}
+
+.cv-template-gustavo-green .gustavo-contact-row i {
+  color: #86efac;
+  width: 14px;
+}
+
+.cv-template-gustavo-green .gustavo-list {
+  padding-left: 15px;
+  margin: 0;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+.cv-template-gustavo-green .gustavo-list li {
+  margin-bottom: 4px;
+}
+
+.cv-template-gustavo-green .gustavo-main {
+  width: 62%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #ffffff;
+}
+
+.cv-template-gustavo-green .gustavo-header-block {
+  background: #e2e8f0;
+  padding: 35px 30px;
+  text-align: center;
+}
+
+.cv-template-gustavo-green .gustavo-name {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.cv-template-gustavo-green .gustavo-job {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.cv-template-gustavo-green .gustavo-body-inner {
+  padding: 25px 30px;
+  flex: 1;
+}
+
+.cv-template-gustavo-green .gustavo-main-sec {
+  margin-bottom: 22px;
+}
+
+.cv-template-gustavo-green .gustavo-main-head {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #1e382b;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1.5px solid #1e382b;
+  padding-bottom: 4px;
+}
+
+.cv-template-gustavo-green .gustavo-desc {
+  font-size: 11px;
+  color: #334155;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cv-template-gustavo-green .gustavo-edu-block {
+  margin-bottom: 14px;
+}
+
+.cv-template-gustavo-green .gustavo-edu-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-gustavo-green .gustavo-edu-yr {
+  font-size: 10.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.cv-template-gustavo-green .gustavo-edu-bullets {
+  padding-left: 15px;
+  margin: 3px 0 0 0;
+  font-size: 11px;
+  color: #475569;
+}
+
+.cv-template-gustavo-green .gustavo-steps-accent {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 90px;
+  height: 90px;
+  background: #1e382b;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 65%, 40% 65%, 40% 35%, 70% 35%, 70% 0);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   TEMPLATE 20: SADIQ AMIN (Executive Halftone Dot Navy & Skill Sliders)
+   ========================================================================== */
+.cv-template-sadiq-navy {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: 30px 35px !important;
+  color: #1e293b;
+}
+
+.cv-template-sadiq-navy .sadiq-dots-top-right {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(#1e3a60 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  opacity: 0.6;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cv-template-sadiq-navy .sadiq-dots-bottom-left {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(#1e3a60 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  opacity: 0.6;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cv-template-sadiq-navy .sadiq-header-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.cv-template-sadiq-navy .sadiq-photo-navy-box {
+  width: 130px;
+  height: 140px;
+  background: #1b2e4b;
+  border-radius: 4px;
+  padding: 5px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.cv-template-sadiq-navy .sadiq-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+.cv-template-sadiq-navy .sadiq-title-center {
+  flex: 1;
+}
+
+.cv-template-sadiq-navy .sadiq-huge-name {
+  font-size: 36px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1b2e4b;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-template-sadiq-navy .sadiq-job {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-top: 6px;
+}
+
+.cv-template-sadiq-navy .sadiq-body-cols {
+  display: flex;
+  gap: 35px;
+}
+
+.cv-template-sadiq-navy .sadiq-left-col {
+  width: 35%;
+}
+
+.cv-template-sadiq-navy .sadiq-right-col {
+  width: 65%;
+}
+
+.cv-template-sadiq-navy .sadiq-sec-block {
+  margin-bottom: 18px;
+}
+
+.cv-template-sadiq-navy .sadiq-simple-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1b2e4b;
+  margin-bottom: 6px;
+}
+
+.cv-template-sadiq-navy .sadiq-about-text {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cv-template-sadiq-navy .sadiq-contact-block {
+  margin: 14px 0;
+}
+
+.cv-template-sadiq-navy .sadiq-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: #334155;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+
+.cv-template-sadiq-navy .sadiq-icon-navy {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1b2e4b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.cv-template-sadiq-navy .sadiq-pill-title {
+  background: #1b2e4b;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.cv-template-sadiq-navy .sadiq-side-bullets {
+  padding-left: 15px;
+  margin: 0;
+  font-size: 11px;
+  color: #475569;
+}
+
+.cv-template-sadiq-navy .sadiq-side-bullets li {
+  margin-bottom: 4px;
+}
+
+.cv-template-sadiq-navy .sadiq-exp-item {
+  margin-bottom: 12px;
+}
+
+.cv-template-sadiq-navy .sadiq-exp-role-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #0f172a;
+}
+
+.cv-template-sadiq-navy .sadiq-exp-date {
+  font-size: 10.5px;
+  color: #64748b;
+}
+
+.cv-template-sadiq-navy .sadiq-exp-comp {
+  font-size: 11px;
+  color: #1b2e4b;
+  font-weight: 700;
+}
+
+.cv-template-sadiq-navy .sadiq-exp-text {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.45;
+  margin: 3px 0 0 0;
+}
+
+.cv-template-sadiq-navy .sadiq-edu-item {
+  margin-bottom: 10px;
+}
+
+.cv-template-sadiq-navy .sadiq-edu-sch {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.cv-template-sadiq-navy .sadiq-edu-deg {
+  font-size: 11px;
+  color: #475569;
+}
+
+.cv-template-sadiq-navy .sadiq-edu-yr {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.cv-template-sadiq-navy .sadiq-skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cv-template-sadiq-navy .sadiq-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.cv-template-sadiq-navy .sadiq-bar-name {
+  width: 120px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.cv-template-sadiq-navy .sadiq-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cv-template-sadiq-navy .sadiq-bar-fill {
+  height: 100%;
+  background: #1b2e4b;
+  border-radius: 3px;
+}
+
+.cv-template-sadiq-navy .sadiq-bar-pct {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #1b2e4b;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   TEMPLATE 21: BLUE WAVE DYNAMIC CURVES (Tahir Imtiaz / Software Engineer Style)
+   ========================================================================== */
+.cv-template-blue-wave {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  color: #1e293b;
+}
+
+.cv-template-blue-wave .wave-header-container {
+  position: relative;
+  height: 190px;
+  width: 100%;
+}
+
+.cv-template-blue-wave .wave-svg-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.cv-template-blue-wave .wave-header-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px 0 40px;
+}
+
+.cv-template-blue-wave .wave-avatar-wrapper {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  overflow: hidden;
+  background: #ffffff;
+  flex-shrink: 0;
+  margin-top: 15px;
+}
+
+.cv-template-blue-wave .wave-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cv-template-blue-wave .wave-name-block {
+  flex: 1;
+  text-align: center;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.cv-template-blue-wave .wave-user-name {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.cv-template-blue-wave .wave-job-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00a8ff;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+.cv-template-blue-wave .wave-body-container {
+  display: flex;
+  flex: 1;
+  padding: 10px 35px 20px 35px;
+  position: relative;
+  z-index: 2;
+}
+
+.cv-template-blue-wave .wave-left-column {
+  width: 36%;
+  padding-right: 20px;
+}
+
+.cv-template-blue-wave .wave-divider-line {
+  width: 2px;
+  background: #cbd5e1;
+  margin: 0 5px;
+}
+
+.cv-template-blue-wave .wave-right-column {
+  width: 64%;
+  padding-left: 25px;
+}
+
+.cv-template-blue-wave .wave-sec-group {
+  margin-bottom: 20px;
+}
+
+.cv-template-blue-wave .wave-sec-title-left {
+  font-size: 15px;
+  font-weight: 900;
+  color: #0d2f57;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.cv-template-blue-wave .wave-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cv-template-blue-wave .wave-contact-pill {
+  display: flex;
+  align-items: center;
+  background: #00a8ff;
+  border-radius: 20px;
+  padding: 4px 12px 4px 5px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(0, 168, 255, 0.3);
+}
+
+.cv-template-blue-wave .wave-contact-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0d2f57;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.cv-template-blue-wave .wave-contact-text {
+  word-break: break-all;
+}
+
+.cv-template-blue-wave .wave-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cv-template-blue-wave .wave-bar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+}
+
+.cv-template-blue-wave .wave-bar-label {
+  font-weight: 700;
+  color: #0d2f57;
+  width: 75px;
+}
+
+.cv-template-blue-wave .wave-bar-shell {
+  flex: 1;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-left: 8px;
+}
+
+.cv-template-blue-wave .wave-bar-core {
+  height: 100%;
+  background: #00a8ff;
+  border-radius: 4px;
+}
+
+.cv-template-blue-wave .wave-hobbies-row {
+  display: flex;
+  gap: 10px;
+}
+
+.cv-template-blue-wave .wave-hobby-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #00a8ff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  box-shadow: 0 3px 8px rgba(0, 168, 255, 0.35);
+}
+
+.cv-template-blue-wave .wave-main-sec {
+  margin-bottom: 22px;
+}
+
+.cv-template-blue-wave .wave-pill-heading {
+  display: inline-flex;
+  align-items: center;
+  background: #00a8ff;
+  border-radius: 20px;
+  padding: 4px 20px 4px 6px;
+  color: #ffffff;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 10px rgba(0, 168, 255, 0.35);
+}
+
+.cv-template-blue-wave .wave-target-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #0d2f57;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.cv-template-blue-wave .wave-pill-text {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.cv-template-blue-wave .wave-about-para {
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cv-template-blue-wave .wave-timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cv-template-blue-wave .wave-timeline-row {
+  display: flex;
+  gap: 14px;
+  font-size: 11.5px;
+}
+
+.cv-template-blue-wave .wave-time-col {
+  width: 85px;
+  font-weight: 700;
+  color: #0d2f57;
+  flex-shrink: 0;
+}
+
+.cv-template-blue-wave .wave-detail-col {
+  flex: 1;
+}
+
+.cv-template-blue-wave .wave-degree-title {
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.cv-template-blue-wave .wave-detail-desc {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.cv-template-blue-wave .wave-footer-container {
+  position: relative;
+  height: 60px;
+  width: 100%;
+}
+
+.cv-template-blue-wave .wave-svg-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   PRINT MEDIA STYLES (Pixel Perfect Standard A4: 210mm x 297mm)
+   ========================================================================== */
+@page {
+  size: 210mm 297mm;
+  margin: 0mm;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0mm;
+  }
+
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .app-header,
+  .app-sidebar-editor,
+  .floating-canvas-bar,
+  .no-print,
+  .toast-container,
+  .modal-backdrop {
+    display: none !important;
+  }
+
+  .app-main-canvas {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    display: block !important;
+  }
+
+  .resume-page-wrapper {
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-page {
+    width: 210mm !important;
+    height: 297mm !important;
+    max-height: 297mm !important;
+    min-height: 297mm !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    overflow: hidden !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}

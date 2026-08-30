@@ -95,7 +95,7 @@
   </header>
 
   <!-- Main Container -->
-  <div class="app-container">
+  <div class="app-container mobile-mode-editor" id="app-container">
 
     <!-- Left Editor Sidebar Panel -->
     <aside class="app-sidebar-editor" id="sidebar-editor">
@@ -560,8 +560,23 @@
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
+  <!-- Mobile Bottom View Mode Switcher (Visible on screens <= 900px) -->
+  <nav class="mobile-view-nav" id="mobile-view-nav">
+    <button class="mobile-nav-btn active" id="btn-mobile-show-editor">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <span id="mobile-label-editor">កែទម្រង់ (Editor)</span>
+    </button>
+    <button class="mobile-nav-btn" id="btn-mobile-show-preview">
+      <i class="fa-solid fa-eye"></i>
+      <span id="mobile-label-preview">មើល CV (Preview)</span>
+    </button>
+    <button class="mobile-nav-btn" id="btn-mobile-quick-export">
+      <i class="fa-solid fa-download"></i>
+      <span id="mobile-label-export">ទាញយក (Export)</span>
+    </button>
+  </nav>
+
   <!-- Application Logic Scripts -->
-  <script src="bundle.js"></script>
   <script src="js/bundle.js"></script>
 </body>
 </html>

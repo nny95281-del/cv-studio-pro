@@ -2883,6 +2883,118 @@
       setTimeout(() => toast.remove(), 300);
     }, 3e3);
   }
+  var UI_TRANSLATIONS = {
+    kh: {
+      brandSubtitle: "\u1780\u1798\u17D2\u1798\u179C\u17B7\u1792\u17B8\u1794\u1784\u17D2\u1780\u17BE\u178F \u1793\u17B7\u1784\u179A\u1785\u1793\u17B6 CV \u17A2\u17B6\u1787\u17B8\u1796",
+      editModeOn: "\u179F\u179A\u179F\u17C1\u179A\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F: \u1794\u17BE\u1780",
+      editModeOff: "\u179F\u179A\u179F\u17C1\u179A\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F: \u1794\u17B7\u1791",
+      sampleProfileDefault: "\u{1F4C2} \u1782\u17C6\u179A\u17BC\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799",
+      sampleProfileKh: "\u{1F1F0}\u{1F1ED} CV \u1780\u1798\u17D2\u1796\u17BB\u1787\u17B6",
+      sampleProfileEn: "\u{1F1EC}\u{1F1E7} CV \u17A2\u1793\u17D2\u178F\u179A\u1787\u17B6\u178F\u17B7",
+      btnExportPng: '\u1791\u17B6\u1789\u1799\u1780 PNG <small style="color: #fbbf24; font-weight: bold;">(10\u{1FA99})</small>',
+      btnPrintPdf: '\u1791\u17B6\u1789\u1799\u1780 PDF <small style="color: #fbbf24; font-weight: bold;">(10\u{1FA99})</small>',
+      tabTemplates: '<i class="fa-solid fa-palette"></i> \u179F\u17D2\u1791\u17B8\u179B CV',
+      tabPersonal: '<i class="fa-solid fa-user"></i> \u1796\u17D0\u178F\u17CC\u1798\u17B6\u1793',
+      tabExperience: '<i class="fa-solid fa-briefcase"></i> \u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD',
+      tabEducation: '<i class="fa-solid fa-graduation-cap"></i> \u1780\u17B6\u179A\u179F\u17B7\u1780\u17D2\u179F\u17B6',
+      tabSkills: '<i class="fa-solid fa-star"></i> \u1787\u17C6\u1793\u17B6\u1789/\u1797\u17B6\u179F\u17B6',
+      tabExtras: '<i class="fa-solid fa-award"></i> \u1795\u17D2\u179F\u17C1\u1784\u17D7',
+      templateHint: "\u1787\u17D2\u179A\u17BE\u179F\u179A\u17BE\u179F\u1791\u1798\u17D2\u179A\u1784\u17CB Template \u1791\u17B6\u17C6\u1784 \u17E2\u17E0 (20 Pro Templates) \u178A\u17C2\u179B\u179F\u1798\u179F\u17D2\u179A\u1794\u1794\u17C6\u1795\u17BB\u178F\u179F\u1798\u17D2\u179A\u17B6\u1794\u17CB\u17A2\u17D2\u1793\u1780",
+      uploadPhotoBtn: '<i class="fa-solid fa-camera"></i> \u1794\u17D2\u178F\u17BC\u179A\u179A\u17BC\u1794\u1797\u17B6\u1796 (Upload Photo)',
+      photoBgLabel: "\u1796\u178E\u17CC\u1795\u17D2\u1791\u17C3\u1780\u17D2\u179A\u17C4\u1799\u179A\u17BC\u1794:",
+      labelFullName: "\u1788\u17D2\u1798\u17C4\u17C7\u1796\u17C1\u1789 (Full Name)",
+      labelJobTitle: "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 / \u17A2\u17B6\u1787\u17B8\u1796 (Job Title)",
+      labelPhone: "\u179B\u17C1\u1781\u1791\u17BC\u179A\u179F\u17D0\u1796\u17D2\u1791 (Phone Number)",
+      labelEmail: "Email",
+      labelTelegram: "Telegram",
+      labelLinkedin: "LinkedIn / Portfolio Link",
+      labelSex: "\u1797\u17C1\u1791 (Sex)",
+      labelNationality: "\u179F\u1789\u17D2\u1787\u17B6\u178F\u17B7 (Nationality)",
+      labelDob: "\u1790\u17D2\u1784\u17C3\u1781\u17C2\u1786\u17D2\u1793\u17B6\u17C6\u1780\u17C6\u178E\u17BE\u178F (Date of Birth)",
+      labelPob: "\u1791\u17B8\u1780\u1793\u17D2\u179B\u17C2\u1784\u1780\u17C6\u178E\u17BE\u178F (Place of Birth)",
+      labelAddress: "\u17A2\u17B6\u179F\u1799\u178A\u17D2\u178B\u17B6\u1793\u1794\u1785\u17D2\u1785\u17BB\u1794\u17D2\u1794\u1793\u17D2\u1793 (Current Address)",
+      labelSummary: "\u1782\u17C4\u179B\u1794\u17C6\u178E\u1784 \u17AC\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u179F\u1784\u17D2\u1781\u17C1\u1794 (Summary / Objective)",
+      placeholderSummary: "\u179F\u179A\u179F\u17C1\u179A\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6\u17A2\u17C6\u1796\u17B8\u1782\u17C4\u179B\u178A\u17C5\u1780\u17B6\u179A\u1784\u17B6\u179A \u1793\u17B7\u1784\u1785\u17C6\u178E\u17BB\u1785\u1781\u17D2\u179B\u17B6\u17C6\u1784\u179A\u1794\u179F\u17CB\u17A2\u17D2\u1793\u1780...",
+      btnAddExp: '<i class="fa-solid fa-plus"></i> \u1794\u1793\u17D2\u1790\u17C2\u1798\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD\u1780\u17B6\u179A\u1784\u17B6\u179A (Add Experience)',
+      btnAddEdu: '<i class="fa-solid fa-plus"></i> \u1794\u1793\u17D2\u1790\u17C2\u1798\u1794\u17D2\u179A\u179C\u178F\u17D2\u178F\u17B7\u1780\u17B6\u179A\u179F\u17B7\u1780\u17D2\u179F\u17B6 (Add Education)',
+      skillsSectionTitle: "\u1787\u17C6\u1793\u17B6\u1789\u1794\u1785\u17D2\u1785\u17C1\u1780\u1791\u17C1\u179F & \u1791\u1793\u17CB (Skills)",
+      btnAddSkill: '<i class="fa-solid fa-plus"></i> \u1794\u1793\u17D2\u1790\u17C2\u1798\u1787\u17C6\u1793\u17B6\u1789 (Add Skill)',
+      langsSectionTitle: "\u1797\u17B6\u179F\u17B6\u1794\u179A\u1791\u17C1\u179F (Languages)",
+      btnAddLang: '<i class="fa-solid fa-plus"></i> \u1794\u1793\u17D2\u1790\u17C2\u1798\u1797\u17B6\u179F\u17B6 (Add Language)',
+      refsSectionTitle: "\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 (References)",
+      btnAddRef: '<i class="fa-solid fa-plus"></i> \u1794\u1793\u17D2\u1790\u17C2\u1798\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 (Add Reference)',
+      prefSectionTitle: "\u1785\u17C6\u178E\u1784\u17CB\u1785\u17C6\u178E\u17BC\u179B\u1785\u17B7\u178F\u17D2\u178F (Preferences / Hobbies)",
+      labelPreferences: "\u1794\u1789\u17D2\u1785\u17BC\u179B\u1785\u17C6\u178E\u1784\u17CB\u1785\u17C6\u178E\u17BC\u179B\u1785\u17B7\u178F\u17D2\u178F (\u1794\u17C6\u1794\u17C2\u1780\u178A\u17C4\u1799\u179F\u1789\u17D2\u1789\u17B6\u1780\u17D2\u1794\u17C0\u179F , )",
+      placeholderPreferences: "\u1794\u17B6\u179B\u17CB\u1791\u17B6\u178F\u17CB, \u178F\u1793\u17D2\u178F\u17D2\u179A\u17B8, \u1780\u17B6\u179A\u17A2\u17B6\u1793...",
+      canvasPreviewBadge: '<i class="fa-solid fa-eye"></i> Form Sync Preview',
+      canvasDirectBadge: '<i class="fa-solid fa-pen-nib"></i> Direct Edit Mode (\u17A2\u17B6\u1785\u1785\u17BB\u1785\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u1794\u17B6\u1793)',
+      mobileLabelEditor: "\u1780\u17C2\u1791\u1798\u17D2\u179A\u1784\u17CB (Editor)",
+      mobileLabelPreview: "\u1798\u17BE\u179B CV (Preview)",
+      mobileLabelExport: "\u1791\u17B6\u1789\u1799\u1780 (Export)",
+      toastSwitchedLang: "\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1797\u17B6\u179F\u17B6\u1791\u17C5\u1787\u17B6 \u1797\u17B6\u179F\u17B6\u1781\u17D2\u1798\u17C2\u179A (Khmer)",
+      toastDirectEditOn: "\u179A\u1794\u17C0\u1794\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F A4 \u178F\u17D2\u179A\u17BC\u179C\u1794\u17B6\u1793\u1794\u17BE\u1780\u178A\u17C6\u178E\u17BE\u179A\u1780\u17B6\u179A! \u1785\u17BB\u1785\u179B\u17BE\u17A2\u178F\u17D2\u1790\u1794\u1791\u178A\u17BE\u1798\u17D2\u1794\u17B8\u1780\u17C2\u179F\u1798\u17D2\u179A\u17BD\u179B",
+      toastDirectEditOff: "\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1798\u1780\u1780\u17B6\u1793\u17CB\u179A\u1794\u17C0\u1794 Form View",
+      toastSampleLoaded: "\u1794\u17B6\u1793\u1791\u17B6\u1789\u1799\u1780\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1782\u17C6\u179A\u17BC\u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!",
+      toastPhotoUpdated: "\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u179A\u17BC\u1794\u1790\u178F Profile \u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!",
+      toastJsonSaved: "\u1794\u17B6\u1793\u1791\u17B6\u1789\u1799\u1780\u17AF\u1780\u179F\u17B6\u179A Backup JSON \u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!",
+      toastJsonImported: "\u1794\u17B6\u1793\u1794\u1789\u17D2\u1785\u17BC\u179B\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1796\u17B8 JSON \u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!"
+    },
+    en: {
+      brandSubtitle: "Professional CV Maker & Designer",
+      editModeOn: "Direct Edit: ON",
+      editModeOff: "Direct Edit: OFF",
+      sampleProfileDefault: "\u{1F4C2} Sample Profiles",
+      sampleProfileKh: "\u{1F1F0}\u{1F1ED} Cambodian CV",
+      sampleProfileEn: "\u{1F1EC}\u{1F1E7} International CV",
+      btnExportPng: 'Download PNG <small style="color: #fbbf24; font-weight: bold;">(10\u{1FA99})</small>',
+      btnPrintPdf: 'Download PDF <small style="color: #fbbf24; font-weight: bold;">(10\u{1FA99})</small>',
+      tabTemplates: '<i class="fa-solid fa-palette"></i> Templates',
+      tabPersonal: '<i class="fa-solid fa-user"></i> Personal',
+      tabExperience: '<i class="fa-solid fa-briefcase"></i> Experience',
+      tabEducation: '<i class="fa-solid fa-graduation-cap"></i> Education',
+      tabSkills: '<i class="fa-solid fa-star"></i> Skills/Langs',
+      tabExtras: '<i class="fa-solid fa-award"></i> Extras',
+      templateHint: "Choose from 20 Pro Templates best suited for your career",
+      uploadPhotoBtn: '<i class="fa-solid fa-camera"></i> Upload Photo',
+      photoBgLabel: "Photo Background:",
+      labelFullName: "Full Name",
+      labelJobTitle: "Job Title / Profession",
+      labelPhone: "Phone Number",
+      labelEmail: "Email Address",
+      labelTelegram: "Telegram",
+      labelLinkedin: "LinkedIn / Portfolio Link",
+      labelSex: "Gender / Sex",
+      labelNationality: "Nationality",
+      labelDob: "Date of Birth",
+      labelPob: "Place of Birth",
+      labelAddress: "Current Address",
+      labelSummary: "Professional Summary / Objective",
+      placeholderSummary: "Briefly describe your career background and key strengths...",
+      btnAddExp: '<i class="fa-solid fa-plus"></i> Add Work Experience',
+      btnAddEdu: '<i class="fa-solid fa-plus"></i> Add Education',
+      skillsSectionTitle: "Technical & Soft Skills",
+      btnAddSkill: '<i class="fa-solid fa-plus"></i> Add Skill',
+      langsSectionTitle: "Languages",
+      btnAddLang: '<i class="fa-solid fa-plus"></i> Add Language',
+      refsSectionTitle: "References",
+      btnAddRef: '<i class="fa-solid fa-plus"></i> Add Reference',
+      prefSectionTitle: "Interests & Hobbies",
+      labelPreferences: "Interests & Hobbies (comma-separated)",
+      placeholderPreferences: "Football, Music, Reading books, Travel...",
+      canvasPreviewBadge: '<i class="fa-solid fa-eye"></i> Form Sync Preview',
+      canvasDirectBadge: '<i class="fa-solid fa-pen-nib"></i> Direct Edit Mode (Click to type)',
+      mobileLabelEditor: "Editor (Form)",
+      mobileLabelPreview: "Preview (CV)",
+      mobileLabelExport: "Export (Download)",
+      toastSwitchedLang: "Switched language to English (\u{1F1EC}\u{1F1E7})",
+      toastDirectEditOn: "Direct edit mode activated! Click on canvas text to edit.",
+      toastDirectEditOff: "Switched back to Form View mode.",
+      toastSampleLoaded: "Sample profile loaded successfully!",
+      toastPhotoUpdated: "Profile photo updated successfully!",
+      toastJsonSaved: "JSON backup file downloaded successfully!",
+      toastJsonImported: "Data restored from JSON successfully!"
+    }
+  };
   function renderCanvas() {
     const container = document.getElementById("resume-canvas-container");
     if (!container) return;
@@ -2906,25 +3018,40 @@
   }
   function syncStateToForm() {
     const p = state.data.personalInfo || {};
-    document.getElementById("input-fullname").value = p.fullName || "";
-    document.getElementById("input-jobtitle").value = p.jobTitle || "";
-    document.getElementById("input-phone").value = p.phone || "";
-    document.getElementById("input-email").value = p.email || "";
-    document.getElementById("input-telegram").value = p.telegram || "";
-    document.getElementById("input-linkedin").value = p.linkedin || "";
-    document.getElementById("input-sex").value = p.sex || "";
-    document.getElementById("input-nationality").value = p.nationality || "";
-    document.getElementById("input-dob").value = p.dob || "";
-    document.getElementById("input-pob").value = p.pob || "";
-    document.getElementById("input-address").value = p.address || "";
-    document.getElementById("input-summary").value = p.summary || "";
+    const elFullName = document.getElementById("input-fullname");
+    if (elFullName) elFullName.value = p.fullName || "";
+    const elJobTitle = document.getElementById("input-jobtitle");
+    if (elJobTitle) elJobTitle.value = p.jobTitle || "";
+    const elPhone = document.getElementById("input-phone");
+    if (elPhone) elPhone.value = p.phone || "";
+    const elEmail = document.getElementById("input-email");
+    if (elEmail) elEmail.value = p.email || "";
+    const elTelegram = document.getElementById("input-telegram");
+    if (elTelegram) elTelegram.value = p.telegram || "";
+    const elLinkedin = document.getElementById("input-linkedin");
+    if (elLinkedin) elLinkedin.value = p.linkedin || "";
+    const elSex = document.getElementById("input-sex");
+    if (elSex) elSex.value = p.sex || "";
+    const elNationality = document.getElementById("input-nationality");
+    if (elNationality) elNationality.value = p.nationality || "";
+    const elDob = document.getElementById("input-dob");
+    if (elDob) elDob.value = p.dob || "";
+    const elPob = document.getElementById("input-pob");
+    if (elPob) elPob.value = p.pob || "";
+    const elAddress = document.getElementById("input-address");
+    if (elAddress) elAddress.value = p.address || "";
+    const elSummary = document.getElementById("input-summary");
+    if (elSummary) elSummary.value = p.summary || "";
     if (state.data.photo) {
-      document.getElementById("form-photo-thumb").src = state.data.photo;
+      const thumb = document.getElementById("form-photo-thumb");
+      if (thumb) thumb.src = state.data.photo;
     }
     if (state.data.photoBg) {
-      document.getElementById("input-photo-bg").value = state.data.photoBg;
+      const bgInp = document.getElementById("input-photo-bg");
+      if (bgInp) bgInp.value = state.data.photoBg;
     }
-    document.getElementById("select-language").value = state.data.language || "kh";
+    const selLang = document.getElementById("select-language");
+    if (selLang) selLang.value = state.data.language || "kh";
     renderExperienceFormItems();
     renderEducationFormItems();
     renderSkillsFormItems();
@@ -2940,39 +3067,178 @@
     const nameInput = document.getElementById("input-fullname");
     if (nameInput && document.activeElement !== nameInput) nameInput.value = p.fullName || "";
   }
+  function applyLanguage(lang, autoSwitchSample = false) {
+    const isEn = lang === "en";
+    state.data.language = lang;
+    document.documentElement.lang = isEn ? "en" : "km";
+    if (autoSwitchSample) {
+      const currentName = state.data.personalInfo?.fullName || "";
+      const isKhmerProfile = currentName.includes("\u1780\u17C2\u179C") || currentName.includes("Kaing") || currentName.includes("\u179F\u17BB\u1784\u17A1\u17B6\u1799");
+      const isEnglishProfile = currentName.toUpperCase().includes("SIOBHAN") || currentName.toUpperCase().includes("SIMMONS");
+      if (isEn && isKhmerProfile) {
+        const activeTpl = state.activeTemplate;
+        state.data = JSON.parse(JSON.stringify(sampleProfiles.english));
+        state.data.templateId = activeTpl;
+        state.data.language = "en";
+      } else if (!isEn && isEnglishProfile) {
+        const activeTpl = state.activeTemplate;
+        state.data = JSON.parse(JSON.stringify(sampleProfiles.cambodian));
+        state.data.templateId = activeTpl;
+        state.data.language = "kh";
+      }
+    }
+    const t = UI_TRANSLATIONS[isEn ? "en" : "kh"];
+    const brandSub = document.querySelector(".brand-text span");
+    if (brandSub) brandSub.innerText = t.brandSubtitle;
+    const editModeLabel = document.getElementById("edit-mode-label");
+    if (editModeLabel) {
+      editModeLabel.innerText = state.directEditMode ? t.editModeOn : t.editModeOff;
+    }
+    const selectLang = document.getElementById("select-language");
+    if (selectLang) selectLang.value = lang;
+    const sampleSelect = document.getElementById("select-sample-profile");
+    if (sampleSelect && sampleSelect.options.length >= 3) {
+      sampleSelect.options[0].innerText = t.sampleProfileDefault;
+      sampleSelect.options[1].innerText = t.sampleProfileKh;
+      sampleSelect.options[2].innerText = t.sampleProfileEn;
+    }
+    const btnExportPng = document.getElementById("btn-export-png");
+    if (btnExportPng) {
+      const span = btnExportPng.querySelector("span");
+      if (span) span.innerHTML = t.btnExportPng;
+    }
+    const btnPrintPdf = document.getElementById("btn-print-pdf");
+    if (btnPrintPdf) {
+      const span = btnPrintPdf.querySelector("span");
+      if (span) span.innerHTML = t.btnPrintPdf;
+    }
+    const tabBtns = document.querySelectorAll(".editor-nav-tabs .nav-tab-btn");
+    tabBtns.forEach((tab) => {
+      const tabName = tab.getAttribute("data-tab");
+      if (tabName === "tab-templates") tab.innerHTML = t.tabTemplates;
+      if (tabName === "tab-personal") tab.innerHTML = t.tabPersonal;
+      if (tabName === "tab-experience") tab.innerHTML = t.tabExperience;
+      if (tabName === "tab-education") tab.innerHTML = t.tabEducation;
+      if (tabName === "tab-skills") tab.innerHTML = t.tabSkills;
+      if (tabName === "tab-extras") tab.innerHTML = t.tabExtras;
+    });
+    const templateHint = document.querySelector(".direct-edit-hint span");
+    if (templateHint) templateHint.innerText = t.templateHint;
+    const photoUploadBtn = document.querySelector(".photo-uploader-box label.btn");
+    if (photoUploadBtn) {
+      photoUploadBtn.childNodes[0].nodeValue = "";
+      photoUploadBtn.innerHTML = `${t.uploadPhotoBtn} <input type="file" id="input-avatar-file" accept="image/*" style="display: none;">`;
+      const newAvatarInput = document.getElementById("input-avatar-file");
+      if (newAvatarInput) {
+        newAvatarInput.addEventListener("change", (e) => {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (loadEvt) => {
+              state.data.photo = loadEvt.target.result;
+              document.getElementById("form-photo-thumb").src = state.data.photo;
+              renderCanvas();
+              showToast(t.toastPhotoUpdated);
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+    }
+    const photoBgLabel = document.querySelector(".photo-upload-actions div label");
+    if (photoBgLabel) photoBgLabel.innerText = t.photoBgLabel;
+    const personalLabels = document.querySelectorAll("#tab-personal .form-group > label.form-label");
+    personalLabels.forEach((lbl) => {
+      const nextInput = lbl.nextElementSibling;
+      if (!nextInput) return;
+      const model = nextInput.getAttribute("data-model");
+      if (model === "personalInfo.fullName") lbl.innerText = t.labelFullName;
+      else if (model === "personalInfo.jobTitle") lbl.innerText = t.labelJobTitle;
+      else if (model === "personalInfo.phone") lbl.innerText = t.labelPhone;
+      else if (model === "personalInfo.email") lbl.innerText = t.labelEmail;
+      else if (model === "personalInfo.telegram") lbl.innerText = t.labelTelegram;
+      else if (model === "personalInfo.linkedin") lbl.innerText = t.labelLinkedin;
+      else if (model === "personalInfo.sex") lbl.innerText = t.labelSex;
+      else if (model === "personalInfo.nationality") lbl.innerText = t.labelNationality;
+      else if (model === "personalInfo.dob") lbl.innerText = t.labelDob;
+      else if (model === "personalInfo.pob") lbl.innerText = t.labelPob;
+      else if (model === "personalInfo.address") lbl.innerText = t.labelAddress;
+      else if (model === "personalInfo.summary") lbl.innerText = t.labelSummary;
+    });
+    const summaryInput = document.getElementById("input-summary");
+    if (summaryInput) summaryInput.placeholder = t.placeholderSummary;
+    const btnAddExp = document.getElementById("btn-add-experience");
+    if (btnAddExp) btnAddExp.innerHTML = t.btnAddExp;
+    const btnAddEdu = document.getElementById("btn-add-education");
+    if (btnAddEdu) btnAddEdu.innerHTML = t.btnAddEdu;
+    const skillHeaders = document.querySelectorAll("#tab-skills h3");
+    if (skillHeaders.length >= 2) {
+      skillHeaders[0].innerText = t.skillsSectionTitle;
+      skillHeaders[1].innerText = t.langsSectionTitle;
+    }
+    const btnAddSkill = document.getElementById("btn-add-skill");
+    if (btnAddSkill) btnAddSkill.innerHTML = t.btnAddSkill;
+    const btnAddLang = document.getElementById("btn-add-language");
+    if (btnAddLang) btnAddLang.innerHTML = t.btnAddLang;
+    const extraHeaders = document.querySelectorAll("#tab-extras h3");
+    if (extraHeaders.length >= 2) {
+      extraHeaders[0].innerText = t.refsSectionTitle;
+      extraHeaders[1].innerText = t.prefSectionTitle;
+    }
+    const btnAddRef = document.getElementById("btn-add-reference");
+    if (btnAddRef) btnAddRef.innerHTML = t.btnAddRef;
+    const prefLabel = document.querySelector("#tab-extras .form-group label.form-label");
+    if (prefLabel) prefLabel.innerText = t.labelPreferences;
+    const prefInput = document.getElementById("input-preferences");
+    if (prefInput) prefInput.placeholder = t.placeholderPreferences;
+    const canvasModeBadge = document.getElementById("canvas-mode-badge");
+    if (canvasModeBadge) {
+      canvasModeBadge.innerHTML = state.directEditMode ? t.canvasDirectBadge : t.canvasPreviewBadge;
+    }
+    const mobLblEdit = document.getElementById("mobile-label-editor");
+    if (mobLblEdit) mobLblEdit.innerText = t.mobileLabelEditor;
+    const mobLblPrev = document.getElementById("mobile-label-preview");
+    if (mobLblPrev) mobLblPrev.innerText = t.mobileLabelPreview;
+    const mobLblExp = document.getElementById("mobile-label-export");
+    if (mobLblExp) mobLblExp.innerText = t.mobileLabelExport;
+    syncStateToForm();
+    renderCanvas();
+  }
   function renderExperienceFormItems() {
+    const isEn = state.data.language === "en";
     const container = document.getElementById("experience-items-container");
+    if (!container) return;
     container.innerHTML = "";
     (state.data.experiences || []).forEach((exp, idx) => {
       const card = document.createElement("div");
       card.className = "item-card";
       card.innerHTML = `
       <div class="item-card-header">
-        <span class="item-card-title">\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD #${idx + 1}</span>
-        <button class="btn-icon-danger btn-remove-exp" data-index="${idx}" title="\u179B\u17BB\u1794\u1785\u17C4\u179B"><i class="fa-solid fa-trash"></i></button>
+        <span class="item-card-title">${isEn ? `Experience #${idx + 1}` : `\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD #${idx + 1}`}</span>
+        <button class="btn-icon-danger btn-remove-exp" data-index="${idx}" title="${isEn ? "Delete" : "\u179B\u17BB\u1794\u1785\u17C4\u179B"}"><i class="fa-solid fa-trash"></i></button>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">\u178F\u17BD\u1793\u17B6\u1791\u17B8 (Role / Position)</label>
+          <label class="form-label">${isEn ? "Role / Position" : "\u178F\u17BD\u1793\u17B6\u1791\u17B8 (Role / Position)"}</label>
           <input type="text" class="form-input exp-role" data-idx="${idx}" value="${exp.role || ""}">
         </div>
         <div class="form-group">
-          <label class="form-label">\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793 / \u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 (Company)</label>
+          <label class="form-label">${isEn ? "Company" : "\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793 / \u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 (Company)"}</label>
           <input type="text" class="form-input exp-company" data-idx="${idx}" value="${exp.company || ""}">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">\u1780\u17B6\u179B\u1794\u179A\u17B7\u1785\u17D2\u1786\u17C1\u1791 (Period)</label>
+          <label class="form-label">${isEn ? "Period / Date" : "\u1780\u17B6\u179B\u1794\u179A\u17B7\u1785\u17D2\u1786\u17C1\u1791 (Period)"}</label>
           <input type="text" class="form-input exp-period" data-idx="${idx}" value="${exp.period || ""}">
         </div>
         <div class="form-group">
-          <label class="form-label">\u1791\u17B8\u178F\u17B6\u17C6\u1784 (Location)</label>
+          <label class="form-label">${isEn ? "Location" : "\u1791\u17B8\u178F\u17B6\u17C6\u1784 (Location)"}</label>
           <input type="text" class="form-input exp-location" data-idx="${idx}" value="${exp.location || ""}">
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">\u1785\u17C6\u178E\u17BB\u1785\u1780\u17B6\u179A\u1784\u17B6\u179A\u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7 (Highlights - \u1798\u17BD\u1799\u1794\u1793\u17D2\u1791\u17B6\u178F\u17CB\u1798\u17BD\u1799\u1785\u17C6\u178E\u17BB\u1785)</label>
+        <label class="form-label">${isEn ? "Key Highlights (1 per line)" : "\u1785\u17C6\u178E\u17BB\u1785\u1780\u17B6\u179A\u1784\u17B6\u179A\u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7 (Highlights - \u1798\u17BD\u1799\u1794\u1793\u17D2\u1791\u17B6\u178F\u17CB\u1798\u17BD\u1799\u1785\u17C6\u178E\u17BB\u1785)"}</label>
         <textarea class="form-textarea exp-highlights" data-idx="${idx}">${(exp.highlights || []).join("\n")}</textarea>
       </div>
     `;
@@ -3018,32 +3284,34 @@
     });
   }
   function renderEducationFormItems() {
+    const isEn = state.data.language === "en";
     const container = document.getElementById("education-items-container");
+    if (!container) return;
     container.innerHTML = "";
     (state.data.education || []).forEach((edu, idx) => {
       const card = document.createElement("div");
       card.className = "item-card";
       card.innerHTML = `
       <div class="item-card-header">
-        <span class="item-card-title">\u1780\u17B6\u179A\u17A2\u1794\u17CB\u179A\u17C6 #${idx + 1}</span>
-        <button class="btn-icon-danger btn-remove-edu" data-index="${idx}" title="\u179B\u17BB\u1794\u1785\u17C4\u179B"><i class="fa-solid fa-trash"></i></button>
+        <span class="item-card-title">${isEn ? `Education #${idx + 1}` : `\u1780\u17B6\u179A\u17A2\u1794\u17CB\u179A\u17C6 #${idx + 1}`}</span>
+        <button class="btn-icon-danger btn-remove-edu" data-index="${idx}" title="${isEn ? "Delete" : "\u179B\u17BB\u1794\u1785\u17C4\u179B"}"><i class="fa-solid fa-trash"></i></button>
       </div>
       <div class="form-group">
-        <label class="form-label">\u179F\u1789\u17D2\u1789\u17B6\u1794\u178F\u17D2\u179A / \u1780\u1798\u17D2\u179A\u17B7\u178F (Degree / Certificate)</label>
+        <label class="form-label">${isEn ? "Degree / Certificate" : "\u179F\u1789\u17D2\u1789\u17B6\u1794\u178F\u17D2\u179A / \u1780\u1798\u17D2\u179A\u17B7\u178F (Degree / Certificate)"}</label>
         <input type="text" class="form-input edu-degree" data-idx="${idx}" value="${edu.degree || ""}">
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">\u179F\u17B6\u179B\u17B6 / \u179F\u17B6\u1780\u179B\u179C\u17B7\u1791\u17D2\u1799\u17B6\u179B\u17D0\u1799 (School / University)</label>
+          <label class="form-label">${isEn ? "School / University" : "\u179F\u17B6\u179B\u17B6 / \u179F\u17B6\u1780\u179B\u179C\u17B7\u1791\u17D2\u1799\u17B6\u179B\u17D0\u1799 (School / University)"}</label>
           <input type="text" class="form-input edu-school" data-idx="${idx}" value="${edu.school || ""}">
         </div>
         <div class="form-group">
-          <label class="form-label">\u1786\u17D2\u1793\u17B6\u17C6\u179F\u17B7\u1780\u17D2\u179F\u17B6 (Period)</label>
+          <label class="form-label">${isEn ? "Academic Period" : "\u1786\u17D2\u1793\u17B6\u17C6\u179F\u17B7\u1780\u17D2\u179F\u17B6 (Period)"}</label>
           <input type="text" class="form-input edu-period" data-idx="${idx}" value="${edu.period || ""}">
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">\u1780\u17B6\u179A\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6\u1794\u1793\u17D2\u1790\u17C2\u1798 (Description / GPA)</label>
+        <label class="form-label">${isEn ? "Description / Honors / GPA" : "\u1780\u17B6\u179A\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6\u1794\u1793\u17D2\u1790\u17C2\u1798 (Description / GPA)"}</label>
         <input type="text" class="form-input edu-desc" data-idx="${idx}" value="${edu.description || ""}">
       </div>
     `;
@@ -3083,7 +3351,9 @@
     });
   }
   function renderSkillsFormItems() {
+    const isEn = state.data.language === "en";
     const container = document.getElementById("skills-items-container");
+    if (!container) return;
     container.innerHTML = "";
     (state.data.skills || []).forEach((skill, idx) => {
       const card = document.createElement("div");
@@ -3091,9 +3361,9 @@
       card.style.padding = "10px 14px";
       card.innerHTML = `
       <div style="display: flex; gap: 10px; align-items: center;">
-        <input type="text" class="form-input skill-name" data-idx="${idx}" value="${skill.name || ""}" placeholder="\u1788\u17D2\u1798\u17C4\u17C7\u1787\u17C6\u1793\u17B6\u1789 (Skill Name)" style="flex: 2;">
+        <input type="text" class="form-input skill-name" data-idx="${idx}" value="${skill.name || ""}" placeholder="${isEn ? "Skill Name" : "\u1788\u17D2\u1798\u17C4\u17C7\u1787\u17C6\u1793\u17B6\u1789 (Skill Name)"}" style="flex: 2;">
         <input type="number" min="10" max="100" class="form-input skill-level" data-idx="${idx}" value="${skill.level || 85}" style="width: 70px;" placeholder="%">
-        <button class="btn-icon-danger btn-remove-skill" data-index="${idx}" title="\u179B\u17BB\u1794"><i class="fa-solid fa-trash"></i></button>
+        <button class="btn-icon-danger btn-remove-skill" data-index="${idx}" title="${isEn ? "Delete" : "\u179B\u17BB\u1794"}"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
       container.appendChild(card);
@@ -3120,7 +3390,9 @@
     });
   }
   function renderLanguagesFormItems() {
+    const isEn = state.data.language === "en";
     const container = document.getElementById("languages-items-container");
+    if (!container) return;
     container.innerHTML = "";
     (state.data.languages || []).forEach((lang, idx) => {
       const card = document.createElement("div");
@@ -3128,9 +3400,9 @@
       card.style.padding = "10px 14px";
       card.innerHTML = `
       <div style="display: flex; gap: 10px; align-items: center;">
-        <input type="text" class="form-input lang-name" data-idx="${idx}" value="${lang.name || ""}" placeholder="\u1797\u17B6\u179F\u17B6 (Language)" style="flex: 1;">
-        <input type="text" class="form-input lang-level" data-idx="${idx}" value="${lang.level || ""}" placeholder="\u1780\u1798\u17D2\u179A\u17B7\u178F (Level / Fluent)" style="flex: 1;">
-        <button class="btn-icon-danger btn-remove-lang" data-index="${idx}" title="\u179B\u17BB\u1794"><i class="fa-solid fa-trash"></i></button>
+        <input type="text" class="form-input lang-name" data-idx="${idx}" value="${lang.name || ""}" placeholder="${isEn ? "Language (e.g. English)" : "\u1797\u17B6\u179F\u17B6 (Language)"}" style="flex: 1;">
+        <input type="text" class="form-input lang-level" data-idx="${idx}" value="${lang.level || ""}" placeholder="${isEn ? "Level (e.g. Fluent, Native)" : "\u1780\u1798\u17D2\u179A\u17B7\u178F (Level)"}" style="flex: 1;">
+        <button class="btn-icon-danger btn-remove-lang" data-index="${idx}" title="${isEn ? "Delete" : "\u179B\u17BB\u1794"}"><i class="fa-solid fa-trash"></i></button>
       </div>
     `;
       container.appendChild(card);
@@ -3157,28 +3429,30 @@
     });
   }
   function renderReferencesFormItems() {
+    const isEn = state.data.language === "en";
     const container = document.getElementById("references-items-container");
+    if (!container) return;
     container.innerHTML = "";
     (state.data.references || []).forEach((ref, idx) => {
       const card = document.createElement("div");
       card.className = "item-card";
       card.innerHTML = `
       <div class="item-card-header">
-        <span class="item-card-title">\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 #${idx + 1}</span>
-        <button class="btn-icon-danger btn-remove-ref" data-index="${idx}" title="\u179B\u17BB\u1794"><i class="fa-solid fa-trash"></i></button>
+        <span class="item-card-title">${isEn ? `Reference #${idx + 1}` : `\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 #${idx + 1}`}</span>
+        <button class="btn-icon-danger btn-remove-ref" data-index="${idx}" title="${isEn ? "Delete" : "\u179B\u17BB\u1794"}"><i class="fa-solid fa-trash"></i></button>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label">\u1788\u17D2\u1798\u17C4\u17C7 (Name)</label>
+          <label class="form-label">${isEn ? "Referee Full Name" : "\u1788\u17D2\u1798\u17C4\u17C7 (Name)"}</label>
           <input type="text" class="form-input ref-name" data-idx="${idx}" value="${ref.name || ""}">
         </div>
         <div class="form-group">
-          <label class="form-label">\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 & \u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 (Role & Company)</label>
+          <label class="form-label">${isEn ? "Job Title & Organization" : "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 & \u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 (Role & Company)"}</label>
           <input type="text" class="form-input ref-role" data-idx="${idx}" value="${ref.role || ""}">
         </div>
       </div>
       <div class="form-group">
-        <label class="form-label">\u1796\u17D0\u178F\u17CC\u1798\u17B6\u1793\u1791\u17C6\u1793\u17B6\u1780\u17CB\u1791\u17C6\u1793\u1784 (Contact Details)</label>
+        <label class="form-label">${isEn ? "Phone or Email" : "\u1796\u17D0\u178F\u17CC\u1798\u17B6\u1793\u1791\u17C6\u1793\u17B6\u1780\u17CB\u1791\u17C6\u1793\u1784 (Contact Details)"}</label>
         <input type="text" class="form-input ref-contact" data-idx="${idx}" value="${ref.contact || ""}">
       </div>
     `;
@@ -3230,7 +3504,8 @@
         card.classList.add("active");
         state.activeTemplate = card.getAttribute("data-template");
         renderCanvas();
-        showToast(`\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1791\u17C5 Template: ${card.querySelector(".template-title").innerText}`);
+        const tplTitle = card.querySelector(".template-title")?.innerText || "";
+        showToast(state.data.language === "en" ? `Switched to Template: ${tplTitle}` : `\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1791\u17C5 Template: ${tplTitle}`);
       });
     });
     const toggleEditBtn = document.getElementById("btn-toggle-edit-mode");
@@ -3238,36 +3513,40 @@
     const canvasModeBadge = document.getElementById("canvas-mode-badge");
     toggleEditBtn.addEventListener("click", () => {
       state.directEditMode = !state.directEditMode;
+      const isEn = state.data.language === "en";
+      const t = UI_TRANSLATIONS[isEn ? "en" : "kh"];
       if (state.directEditMode) {
         toggleEditBtn.className = "btn btn-success";
-        editModeLabel.innerText = "\u1785\u17BB\u1785\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F: \u1794\u17BE\u1780";
+        editModeLabel.innerText = t.editModeOn;
         canvasModeBadge.className = "mode-badge direct-active";
-        canvasModeBadge.innerHTML = '<i class="fa-solid fa-pen-nib"></i> Direct Edit Mode (\u17A2\u17B6\u1785\u1785\u17BB\u1785\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u1794\u17B6\u1793)';
-        showToast("\u179A\u1794\u17C0\u1794\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F A4 \u178F\u17D2\u179A\u17BC\u179C\u1794\u17B6\u1793\u1794\u17BE\u1780\u178A\u17C6\u178E\u17BE\u179A\u1780\u17B6\u179A! \u1785\u17BB\u1785\u179B\u17BE\u17A2\u178F\u17D2\u1790\u1794\u1791\u178A\u17BE\u1798\u17D2\u1794\u17B8\u1780\u17C2\u179F\u1798\u17D2\u179A\u17BD\u179B");
+        canvasModeBadge.innerHTML = t.canvasDirectBadge;
+        showToast(t.toastDirectEditOn);
       } else {
         toggleEditBtn.className = "btn btn-secondary";
-        editModeLabel.innerText = "\u1785\u17BB\u1785\u179F\u179A\u179F\u17C1\u179A\u1795\u17D2\u1791\u17B6\u179B\u17CB\u179B\u17BE\u1780\u17D2\u179A\u178A\u17B6\u179F: \u1794\u17B7\u1791";
+        editModeLabel.innerText = t.editModeOff;
         canvasModeBadge.className = "mode-badge";
-        canvasModeBadge.innerHTML = '<i class="fa-solid fa-eye"></i> Form Sync Preview';
-        showToast("\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1798\u1780\u1780\u17B6\u1793\u17CB\u179A\u1794\u17C0\u1794 Form View");
+        canvasModeBadge.innerHTML = t.canvasPreviewBadge;
+        showToast(t.toastDirectEditOff);
       }
       renderCanvas();
     });
     document.getElementById("select-language").addEventListener("change", (e) => {
-      state.data.language = e.target.value;
-      renderCanvas();
+      const selectedLang = e.target.value;
+      applyLanguage(selectedLang, true);
+      showToast(UI_TRANSLATIONS[selectedLang === "en" ? "en" : "kh"].toastSwitchedLang);
     });
     document.getElementById("select-sample-profile").addEventListener("change", (e) => {
       const val = e.target.value;
       if (val && sampleProfiles[val]) {
+        const targetLang = val === "english" ? "en" : "kh";
         state.data = JSON.parse(JSON.stringify(sampleProfiles[val]));
-        state.activeTemplate = state.data.templateId || "cambodian";
+        state.data.language = targetLang;
+        state.activeTemplate = state.data.templateId || "charcoal";
         templateCards.forEach((c) => {
           c.classList.toggle("active", c.getAttribute("data-template") === state.activeTemplate);
         });
-        syncStateToForm();
-        renderCanvas();
-        showToast("\u1794\u17B6\u1793\u1791\u17B6\u1789\u1799\u1780\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u1782\u17C6\u179A\u17BC\u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!");
+        applyLanguage(targetLang, false);
+        showToast(UI_TRANSLATIONS[targetLang === "en" ? "en" : "kh"].toastSampleLoaded);
       }
       e.target.value = "";
     });
@@ -3278,69 +3557,82 @@
         renderCanvas();
       });
     });
-    document.getElementById("input-preferences").addEventListener("input", (e) => {
-      state.data.preferences = e.target.value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
-      renderCanvas();
-    });
+    const prefInput = document.getElementById("input-preferences");
+    if (prefInput) {
+      prefInput.addEventListener("input", (e) => {
+        state.data.preferences = e.target.value.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
+        renderCanvas();
+      });
+    }
     const avatarInput = document.getElementById("input-avatar-file");
-    avatarInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (loadEvt) => {
-          state.data.photo = loadEvt.target.result;
-          document.getElementById("form-photo-thumb").src = state.data.photo;
-          renderCanvas();
-          showToast("\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u179A\u17BC\u1794\u1790\u178F Profile \u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!");
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-    document.getElementById("input-photo-bg").addEventListener("input", (e) => {
-      state.data.photoBg = e.target.value;
-      renderCanvas();
-    });
+    if (avatarInput) {
+      avatarInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (loadEvt) => {
+            state.data.photo = loadEvt.target.result;
+            document.getElementById("form-photo-thumb").src = state.data.photo;
+            renderCanvas();
+            showToast(state.data.language === "en" ? "Profile photo updated!" : "\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u179A\u17BC\u1794\u1790\u178F Profile \u178A\u17C4\u1799\u1787\u17C4\u1782\u1787\u17D0\u1799!");
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+    const photoBgInput = document.getElementById("input-photo-bg");
+    if (photoBgInput) {
+      photoBgInput.addEventListener("input", (e) => {
+        state.data.photoBg = e.target.value;
+        renderCanvas();
+      });
+    }
     document.getElementById("btn-add-experience").addEventListener("click", () => {
+      const isEn = state.data.language === "en";
       if (!state.data.experiences) state.data.experiences = [];
       state.data.experiences.push({
-        role: "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784\u1790\u17D2\u1798\u17B8 (New Role)",
-        company: "\u1788\u17D2\u1798\u17C4\u17C7\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793 (Company Name)",
-        location: "\u1797\u17D2\u1793\u17C6\u1796\u17C1\u1789 (Phnom Penh)",
-        period: "2023 - Present",
-        highlights: ["\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6\u1780\u17B6\u179A\u1784\u17B6\u179A\u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7\u1793\u17C5\u1791\u17B8\u1793\u17C1\u17C7..."]
+        role: isEn ? "New Role / Position" : "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784\u1790\u17D2\u1798\u17B8 (New Role)",
+        company: isEn ? "Company Name" : "\u1788\u17D2\u1798\u17C4\u17C7\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793 (Company Name)",
+        location: isEn ? "Phnom Penh, Cambodia" : "\u1797\u17D2\u1793\u17C6\u1796\u17C1\u1789 (Phnom Penh)",
+        period: isEn ? "2023 - Present" : "2023 - \u1794\u1785\u17D2\u1785\u17BB\u1794\u17D2\u1794\u1793\u17D2\u1793",
+        highlights: [isEn ? "Key responsibility or achievement here..." : "\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6\u1780\u17B6\u179A\u1784\u17B6\u179A\u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7\u1793\u17C5\u1791\u17B8\u1793\u17C1\u17C7..."]
       });
       renderExperienceFormItems();
       renderCanvas();
     });
     document.getElementById("btn-add-education").addEventListener("click", () => {
+      const isEn = state.data.language === "en";
       if (!state.data.education) state.data.education = [];
       state.data.education.push({
-        degree: "\u1794\u179A\u17B7\u1789\u17D2\u1789\u17B6\u1794\u178F\u17D2\u179A\u1790\u17D2\u1798\u17B8 (New Degree)",
-        school: "\u179F\u17B6\u1780\u179B\u179C\u17B7\u1791\u17D2\u1799\u17B6\u179B\u17D0\u1799 / \u179F\u17B6\u179B\u17B6",
-        period: "2020 - 2024",
-        description: "\u1780\u17B6\u179A\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6 \u17AC GPA..."
+        degree: isEn ? "Bachelor Degree in MIS" : "\u1794\u179A\u17B7\u1789\u17D2\u1789\u17B6\u1794\u178F\u17D2\u179A\u1790\u17D2\u1798\u17B8 (New Degree)",
+        school: isEn ? "University / Institution" : "\u179F\u17B6\u1780\u179B\u179C\u17B7\u1791\u17D2\u1799\u17B6\u179B\u17D0\u1799 / \u179F\u17B6\u179B\u17B6",
+        period: isEn ? "2020 - 2024" : "2020 - 2024",
+        description: isEn ? "Description or GPA..." : "\u1780\u17B6\u179A\u1796\u17B7\u1796\u178E\u17CC\u1793\u17B6 \u17AC GPA..."
       });
       renderEducationFormItems();
       renderCanvas();
     });
     document.getElementById("btn-add-skill").addEventListener("click", () => {
+      const isEn = state.data.language === "en";
       if (!state.data.skills) state.data.skills = [];
-      state.data.skills.push({ name: "\u1787\u17C6\u1793\u17B6\u1789\u1790\u17D2\u1798\u17B8 (New Skill)", level: 80 });
+      state.data.skills.push({ name: isEn ? "New Skill" : "\u1787\u17C6\u1793\u17B6\u1789\u1790\u17D2\u1798\u17B8 (New Skill)", level: 80 });
       renderSkillsFormItems();
       renderCanvas();
     });
     document.getElementById("btn-add-language").addEventListener("click", () => {
+      const isEn = state.data.language === "en";
       if (!state.data.languages) state.data.languages = [];
-      state.data.languages.push({ name: "\u1797\u17B6\u179F\u17B6\u1790\u17D2\u1798\u17B8 (New Language)", level: "Fluent", percent: 80 });
+      state.data.languages.push({ name: isEn ? "English" : "\u1797\u17B6\u179F\u17B6\u1790\u17D2\u1798\u17B8 (New Language)", level: isEn ? "Fluent" : "\u1780\u1798\u17D2\u179A\u17B7\u178F\u1798\u1792\u17D2\u1799\u1798", percent: 80 });
       renderLanguagesFormItems();
       renderCanvas();
     });
     document.getElementById("btn-add-reference").addEventListener("click", () => {
+      const isEn = state.data.language === "en";
       if (!state.data.references) state.data.references = [];
       state.data.references.push({
-        name: "\u1788\u17D2\u1798\u17C4\u17C7\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 (Reference Name)",
-        role: "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 & \u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793",
-        contact: "Phone: 012 345 678 | Email: example@gmail.com"
+        name: isEn ? "Referee Full Name" : "\u1788\u17D2\u1798\u17C4\u17C7\u1794\u17BB\u1782\u17D2\u1782\u179B\u1792\u17B6\u1793\u17B6 (Reference Name)",
+        role: isEn ? "Senior Manager at Borcelle" : "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 & \u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793",
+        contact: isEn ? "Phone: +855 12 345 678 | Email: ref@example.com" : "Phone: 012 345 678 | Email: example@gmail.com"
       });
       renderReferencesFormItems();
       renderCanvas();
@@ -3355,9 +3647,19 @@
     const autoFitZoom = () => {
       const canvasEl = document.getElementById("main-canvas");
       if (canvasEl) {
-        const availH = canvasEl.clientHeight - 130;
+        const isMobile = window.innerWidth <= 900;
+        const availW = isMobile ? window.innerWidth - 20 : canvasEl.clientWidth - 40;
+        const availH = isMobile ? window.innerHeight - 170 : canvasEl.clientHeight - 130;
+        const a4W = 794;
         const a4H = 1122.5;
-        const bestScale = Math.min(Math.max(Math.round(availH / a4H * 100), 55), 100);
+        let scaleW = Math.round(availW / a4W * 100);
+        let scaleH = Math.round(availH / a4H * 100);
+        let bestScale;
+        if (isMobile) {
+          bestScale = Math.min(Math.max(scaleW, 35), 90);
+        } else {
+          bestScale = Math.min(Math.max(scaleH, 50), 100);
+        }
         updateZoom(bestScale);
       } else {
         updateZoom(75);
@@ -3370,7 +3672,36 @@
     if (fitBtn) {
       fitBtn.addEventListener("click", autoFitZoom);
     }
+    const appContainer = document.getElementById("app-container");
+    const btnMobShowEditor = document.getElementById("btn-mobile-show-editor");
+    const btnMobShowPreview = document.getElementById("btn-mobile-show-preview");
+    const btnMobQuickExport = document.getElementById("btn-mobile-quick-export");
+    if (btnMobShowEditor && appContainer) {
+      btnMobShowEditor.addEventListener("click", () => {
+        appContainer.classList.remove("mobile-mode-preview");
+        appContainer.classList.add("mobile-mode-editor");
+        btnMobShowEditor.classList.add("active");
+        btnMobShowPreview?.classList.remove("active");
+      });
+    }
+    if (btnMobShowPreview && appContainer) {
+      btnMobShowPreview.addEventListener("click", () => {
+        appContainer.classList.remove("mobile-mode-editor");
+        appContainer.classList.add("mobile-mode-preview");
+        btnMobShowPreview.classList.add("active");
+        btnMobShowEditor?.classList.remove("active");
+        setTimeout(autoFitZoom, 50);
+      });
+    }
+    if (btnMobQuickExport) {
+      btnMobQuickExport.addEventListener("click", () => {
+        executePdfExport();
+      });
+    }
     window.addEventListener("resize", () => {
+      if (window.innerWidth <= 900 && appContainer?.classList.contains("mobile-mode-preview")) {
+        autoFitZoom();
+      }
     });
     const paymentModal = document.getElementById("modal-bakong-payment");
     const closePaymentModalBtn = document.getElementById("btn-close-payment-modal");

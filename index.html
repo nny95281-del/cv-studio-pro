@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV Studio Pro - កម្មវិធីបង្កើត និងរចនា CV អាជីព</title>
 
-  <!-- Google Fonts: Kantumruy Pro, Battambang, Outfit, Inter -->
+  <!-- Google Fonts: Kantumruy Pro, Battambang, Moul, Siemreap, Koh Santepheap, Nokora, Outfit, Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Koh+Santepheap:wght@300;400;700&family=Moul&family=Nokora:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Siemreap&display=swap" rel="stylesheet">
 
   <!-- Font Awesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -50,6 +50,33 @@
       <button class="btn btn-secondary" id="btn-toggle-edit-mode" title="ប្តូររបៀបសរសេរ">
         <i class="fa-solid fa-pen-to-square"></i>
         <span id="edit-mode-label">សរសេរលើក្រដាស: បិទ</span>
+      </button>
+
+      <!-- Khmer / Global Font Selector -->
+      <div class="select-wrapper" title="ជ្រើសរើស Font អក្សរខ្មែរ (Khmer Typography)">
+        <select class="custom-select" id="select-font-family">
+          <option value="'Kantumruy Pro', sans-serif">🔤 Kantumruy Pro (ស្តង់ដារ)</option>
+          <option value="'Battambang', sans-serif">🔤 Battambang (បុរាណ)</option>
+          <option value="'Koh Santepheap', sans-serif">🔤 Koh Santepheap</option>
+          <option value="'Siemreap', sans-serif">🔤 Siemreap</option>
+          <option value="'Nokora', sans-serif">🔤 Nokora (ផ្លូវការ)</option>
+          <option value="'Moul', cursive">🔤 Moul (ក្បាច់ចំណងជើង)</option>
+          <option value="'Inter', sans-serif">🔤 Inter (អន្តរជាតិ)</option>
+          <option value="'Outfit', sans-serif">🔤 Outfit (Modern Sans)</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+      </div>
+
+      <!-- ATS Resume Score Button -->
+      <button class="btn btn-secondary" id="btn-open-ats-score" title="ពិនិត្យពិន្ទុ CV ស្តង់ដារ ATS">
+        <i class="fa-solid fa-chart-pie" style="color: #10b981;"></i>
+        <span>ATS Score</span>
+      </button>
+
+      <!-- Cover Letter Generator Button -->
+      <button class="btn btn-secondary" id="btn-open-cover-letter" title="បង្កើតលិខិតសុំការងារ (Cover Letter Generator)">
+        <i class="fa-solid fa-envelope-open-text" style="color: #60a5fa;"></i>
+        <span>Cover Letter</span>
       </button>
 
       <!-- Language Selector -->
@@ -552,6 +579,86 @@
 
         <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #94a3b8;">
           <span>កូដផុតកំណត់ក្នុងរយៈពេល: </span><strong id="qr-countdown-timer" style="color: #fbbf24;">05:00</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ATS Resume Score Modal -->
+  <div class="modal-backdrop" id="modal-ats-score">
+    <div class="modal-card" style="max-width: 580px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-chart-line" style="color: #10b981;"></i> វិភាគពិន្ទុ CV ស្តង់ដារ ATS (Resume Score)</h3>
+        <button class="btn-close-modal" id="btn-close-ats-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="ats-score-hero">
+          <div class="ats-gauge-circle" id="ats-score-circle">
+            <span class="ats-score-num" id="ats-score-value">0</span>
+            <span class="ats-score-unit">/ 100</span>
+          </div>
+          <div class="ats-score-status">
+            <div class="ats-grade-badge" id="ats-grade-badge">កំពុងវិភាគ...</div>
+            <p style="font-size: 12.5px; color: #94a3b8; margin-top: 6px;">ពិន្ទុគណនាលើភាពពេញលេញនៃព័ត៌មាន បទពិសោធន៍ ជំនាញ និងរចនាសម្ព័ន្ធ ATS</p>
+          </div>
+        </div>
+
+        <div class="ats-section-box">
+          <h4 style="color: #10b981; margin-bottom: 8px; font-size: 13.5px;"><i class="fa-solid fa-circle-check"></i> ចំណុចខ្លាំងនៃប្រវត្តិរូប (Strengths)</h4>
+          <ul class="ats-list" id="ats-strengths-list"></ul>
+        </div>
+
+        <div class="ats-section-box" style="margin-top: 12px;">
+          <h4 style="color: #f59e0b; margin-bottom: 8px; font-size: 13.5px;"><i class="fa-solid fa-triangle-exclamation"></i> ចំណុចគួរកែលម្អ (Suggestions to Improve)</h4>
+          <ul class="ats-list" id="ats-suggestions-list"></ul>
+        </div>
+
+        <button class="btn btn-primary" id="btn-ats-fix-action" style="width: 100%; margin-top: 16px; justify-content: center;">
+          <i class="fa-solid fa-pen-to-square"></i> កែប្រែព័ត៌មានដើម្បីបង្កើនពិន្ទុ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Cover Letter Generator Modal -->
+  <div class="modal-backdrop" id="modal-cover-letter">
+    <div class="modal-card" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-envelope-open-text" style="color: #60a5fa;"></i> បង្កើតលិខិតសុំការងារ (Cover Letter)</h3>
+        <button class="btn-close-modal" id="btn-close-cl-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="cl-input-grid">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">🏢 ឈ្មោះក្រុមហ៊ុន ឬស្ថាប័ន (Company Name)៖</label>
+            <input type="text" class="form-control" id="cl-target-company" placeholder="ឧទាហរណ៍៖ ABA Bank, Smart Axiata, Wing..." value="ស្ថាប័ន / ក្រុមហ៊ុន">
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label">💼 មុខតំណែងដែលចង់ដាក់ពាក្យ (Target Position)៖</label>
+            <input type="text" class="form-control" id="cl-target-job" placeholder="ឧទាហរណ៍៖ Senior Software Engineer">
+          </div>
+        </div>
+
+        <!-- Language Switcher for Cover Letter -->
+        <div class="cl-lang-tabs" style="margin: 14px 0 10px 0; display: flex; gap: 8px;">
+          <button class="btn btn-sm btn-primary" id="btn-cl-lang-km"><i class="fa-solid fa-language"></i> 🇰🇭 ភាសាខ្មែរ</button>
+          <button class="btn btn-sm btn-secondary" id="btn-cl-lang-en"><i class="fa-solid fa-globe"></i> 🇬🇧 English</button>
+          <button class="btn btn-sm btn-outline" id="btn-cl-regenerate" style="margin-left: auto;"><i class="fa-solid fa-rotate"></i> បង្កើតឡើងវិញ</button>
+        </div>
+
+        <!-- Cover Letter Textarea/Preview -->
+        <div class="form-group">
+          <textarea class="form-control" id="cl-content-textarea" rows="12" style="font-family: inherit; font-size: 13px; line-height: 1.6; resize: vertical;"></textarea>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
+          <button class="btn btn-secondary" id="btn-cl-copy">
+            <i class="fa-solid fa-copy"></i> ចម្លងអត្ថបទ (Copy)
+          </button>
+          <button class="btn btn-primary" id="btn-cl-print">
+            <i class="fa-solid fa-print"></i> បោះពុម្ព / Save PDF
+          </button>
         </div>
       </div>
     </div>

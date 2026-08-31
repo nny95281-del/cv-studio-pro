@@ -1122,4 +1122,93 @@ body {
   }
 }
 
+/* ATS Resume Score Modal Styles */
+.ats-score-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.ats-gauge-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 5px solid #10b981;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ats-score-num {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1;
+  color: #f8fafc;
+}
+
+.ats-score-unit {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.ats-grade-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  background: #10b981;
+  color: #ffffff;
+  transition: background 0.3s ease;
+}
+
+.ats-section-box {
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.ats-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ats-list li {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* Cover Letter Input Grid */
+.cl-input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .cl-input-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 

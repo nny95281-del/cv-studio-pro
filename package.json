@@ -1,0 +1,12 @@
+{
+  "name": "cv-studio-pro",
+  "version": "1.0.0",
+  "description": "CV Studio Pro - Professional CV Maker & Designer with 20 Templates",
+  "main": "js/bundle.js",
+  "scripts": {
+    "build": "esbuild js/app.js --bundle --outfile=js/bundle.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

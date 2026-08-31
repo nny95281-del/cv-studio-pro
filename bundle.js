@@ -2698,6 +2698,105 @@
   `;
   }
 
+  // js/security.js
+  var _0xS1 = "cv_pro_sec_v2_98721";
+  var _0xS2 = "km_khqr_shield_89412";
+  function secureHash(str) {
+    let h1 = 3735928559, h2 = 1103515245;
+    for (let i = 0; i < str.length; i++) {
+      const ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ h1 >>> 16, 2246822507) ^ Math.imul(h2 ^ h2 >>> 13, 3266489909);
+    h2 = Math.imul(h2 ^ h2 >>> 16, 2246822507) ^ Math.imul(h1 ^ h1 >>> 13, 3266489909);
+    return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+  }
+  function signCoins(coins) {
+    const payload = `${_0xS1}_${coins}_${_0xS2}`;
+    return secureHash(payload);
+  }
+  var SecureStorage = {
+    COIN_KEY: "cv_studio_coins_v2",
+    SIGN_KEY: "cv_studio_sig_v2",
+    LEGACY_KEY: "cv_studio_coins",
+    // Retrieve validated coins
+    getCoins: function() {
+      try {
+        const storedCoins = localStorage.getItem(this.COIN_KEY);
+        const storedSig = localStorage.getItem(this.SIGN_KEY);
+        if (storedCoins === null || storedSig === null) {
+          const legacy = localStorage.getItem(this.LEGACY_KEY);
+          const initialCoins = legacy ? Math.min(parseInt(legacy, 10) || 0, 50) : 0;
+          this.setCoins(initialCoins);
+          localStorage.removeItem(this.LEGACY_KEY);
+          return initialCoins;
+        }
+        const coins = parseInt(storedCoins, 10);
+        if (isNaN(coins) || coins < 0) {
+          this.handleTampering("Invalid coin number format");
+          return 0;
+        }
+        const expectedSig = signCoins(coins);
+        if (storedSig !== expectedSig) {
+          this.handleTampering("Signature mismatch detected (Manual LocalStorage Edit)");
+          return 0;
+        }
+        return coins;
+      } catch (e) {
+        console.warn("SecureStorage error:", e);
+        return 0;
+      }
+    },
+    // Store coins with crypto signature
+    setCoins: function(coins) {
+      const validCoins = Math.max(0, parseInt(coins, 10) || 0);
+      const signature = signCoins(validCoins);
+      try {
+        localStorage.setItem(this.COIN_KEY, validCoins.toString());
+        localStorage.setItem(this.SIGN_KEY, signature);
+      } catch (e) {
+        console.error("Failed to write to secure storage:", e);
+      }
+      return validCoins;
+    },
+    // Triggered when an attacker tries to edit coins in Console/DevTools
+    handleTampering: function(reason) {
+      console.warn(`[SECURITY ALERT] Tampering detected: ${reason}. Resetting balance.`);
+      this.setCoins(0);
+      localStorage.removeItem(this.LEGACY_KEY);
+      window.dispatchEvent(new CustomEvent("cv_security_tamper_detected", { detail: { reason } }));
+    }
+  };
+  function initSecurityIntegrityWatcher(onBalanceChanged) {
+    window.addEventListener("storage", (event) => {
+      if (event.key === SecureStorage.COIN_KEY || event.key === SecureStorage.SIGN_KEY || event.key === SecureStorage.LEGACY_KEY) {
+        const verifiedCoins = SecureStorage.getCoins();
+        if (onBalanceChanged) onBalanceChanged(verifiedCoins);
+      }
+    });
+    window.addEventListener("cv_security_tamper_detected", () => {
+      if (onBalanceChanged) onBalanceChanged(0);
+    });
+  }
+  function initDevToolsGuard() {
+    if (typeof console !== "undefined") {
+      const titleStyle = "color: #e11d48; font-size: 20px; font-weight: bold; text-shadow: 1px 1px 2px black;";
+      const bodyStyle = "color: #3b82f6; font-size: 13px; font-weight: 500;";
+      console.log("%c\u26A0\uFE0F CV Studio Pro Security Guard Active", titleStyle);
+      console.log("%c\u1780\u17BB\u17C6\u1794\u17B7\u1791\u1797\u17D2\u1787\u17B6\u1794\u17CB \u17AC\u1780\u17BC\u178A script \u1798\u17B7\u1793\u1785\u17D2\u1794\u17B6\u179F\u17CB\u179B\u17B6\u179F\u17CB\u1793\u17C5\u1791\u17B8\u1793\u17C1\u17C7\u17D4 \u179A\u17B6\u179B\u17CB\u1791\u17B7\u1793\u17D2\u1793\u1793\u17D0\u1799\u178F\u17D2\u179A\u17BC\u179C\u1794\u17B6\u1793\u1780\u17B6\u179A\u1796\u17B6\u179A\u178A\u17C4\u1799 Cryptographic Signature Verification\u17D4", bodyStyle);
+    }
+    document.addEventListener("drop", (e) => {
+      if (e.target.tagName === "INPUT" && e.target.type === "file") return;
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") {
+        const data = e.dataTransfer.getData("text");
+        if (data && (data.includes("<script") || data.includes("javascript:"))) {
+          e.preventDefault();
+        }
+      }
+    });
+  }
+
   // js/payment.js
   var BAKONG_CONFIG = {
     baseUrl: "https://www.payment-system.dev/api/v1/",
@@ -2712,7 +2811,7 @@
     // Optimized: poll every 5s instead of 3s to reduce API spam
   };
   var paymentState = {
-    coins: parseInt(localStorage.getItem("cv_studio_coins") || "0", 10),
+    coins: SecureStorage.getCoins(),
     activePollInterval: null,
     currentMd5: null,
     pendingActionAfterPay: null,
@@ -2723,18 +2822,32 @@
   var qrCache = /* @__PURE__ */ new Map();
   var QR_CACHE_DURATION_MS = 3.5 * 60 * 1e3;
   function updateCoinBalance(amountToAdd = 0) {
-    paymentState.coins = Math.max(0, paymentState.coins + amountToAdd);
-    localStorage.setItem("cv_studio_coins", paymentState.coins.toString());
+    const currentVerified = SecureStorage.getCoins();
+    const newBalance = Math.max(0, currentVerified + amountToAdd);
+    paymentState.coins = SecureStorage.setCoins(newBalance);
     const coinElements = document.querySelectorAll(".user-coin-val");
     coinElements.forEach((el) => {
       el.innerText = paymentState.coins;
     });
+    return paymentState.coins;
   }
   async function generateBakongQR(amountUsd) {
     const cacheKey = amountUsd.toFixed(2);
     const cached = qrCache.get(cacheKey);
     if (cached && Date.now() < cached.expiresAt) {
       return cached.data;
+    }
+    try {
+      const proxyRes = await fetch(`/api/payment?action=generate_qr&amount=${cacheKey}`);
+      if (proxyRes.ok) {
+        const proxyJson = await proxyRes.json();
+        if (proxyJson.success && proxyJson.data) {
+          const qrData = proxyJson.data;
+          qrCache.set(cacheKey, { data: qrData, expiresAt: Date.now() + QR_CACHE_DURATION_MS });
+          return qrData;
+        }
+      }
+    } catch (_) {
     }
     const url = `${BAKONG_CONFIG.baseUrl}?type=generate_qr&api_token=${encodeURIComponent(BAKONG_CONFIG.apiToken)}&amount=${cacheKey}`;
     try {
@@ -2759,6 +2872,17 @@
     }
   }
   async function checkPaymentStatus(md5) {
+    try {
+      const proxyRes = await fetch(`/api/payment?action=check_md5&md5=${encodeURIComponent(md5)}`);
+      if (proxyRes.ok) {
+        const proxyJson = await proxyRes.json();
+        if (proxyJson.success) {
+          paymentState.consecutiveErrors = 0;
+          return proxyJson.data;
+        }
+      }
+    } catch (_) {
+    }
     const url = `${BAKONG_CONFIG.baseUrl}?type=check_md5&api_token=${encodeURIComponent(BAKONG_CONFIG.apiToken)}&md5=${encodeURIComponent(md5)}`;
     try {
       const response = await fetch(url);
@@ -2828,11 +2952,177 @@
     }
   });
 
+  // js/atsScore.js
+  function calculateAtsScore(profileData) {
+    let score = 0;
+    const maxScore = 100;
+    const feedback = [];
+    const strengths = [];
+    const pi = profileData.personalInfo || {};
+    const experiences = profileData.experiences || [];
+    const educations = profileData.educations || [];
+    const skills = profileData.skills || [];
+    const languages = profileData.languages || [];
+    let contactScore = 0;
+    if (pi.fullName && pi.fullName.trim().length >= 3) contactScore += 5;
+    if (pi.title && pi.title.trim().length >= 3) contactScore += 5;
+    if (pi.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pi.email.trim())) contactScore += 5;
+    if (pi.phone && pi.phone.trim().length >= 8) contactScore += 5;
+    if (pi.address && pi.address.trim().length >= 4) contactScore += 5;
+    score += contactScore;
+    if (contactScore === 25) {
+      strengths.push("\u1796\u17D0\u178F\u17CC\u1798\u17B6\u1793\u1791\u17C6\u1793\u17B6\u1780\u17CB\u1791\u17C6\u1793\u1784\u1796\u17C1\u1789\u179B\u17C1\u1789 \u1793\u17B7\u1784\u178F\u17D2\u179A\u17B9\u1798\u178F\u17D2\u179A\u17BC\u179C (100% Complete Contact Info)");
+    } else {
+      feedback.push("\u179F\u17BC\u1798\u1794\u17C6\u1796\u17C1\u1789\u1796\u17D0\u178F\u17CC\u1798\u17B6\u1793\u1791\u17C6\u1793\u17B6\u1780\u17CB\u1791\u17C6\u1793\u1784\u17B1\u17D2\u1799\u1794\u17B6\u1793\u1796\u17C1\u1789\u179B\u17C1\u1789 (Email, Phone, Address, Title)");
+    }
+    if (pi.summary && pi.summary.trim().length >= 80) {
+      score += 15;
+      strengths.push("\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u179F\u1784\u17D2\u1781\u17C1\u1794\u1794\u17D2\u179A\u179C\u178F\u17D2\u178F\u17B7\u179A\u17BC\u1794\u1798\u17B6\u1793\u179B\u1780\u17D2\u1781\u178E\u17C8\u1791\u17B6\u1780\u17CB\u1791\u17B6\u1789 \u1793\u17B7\u1784\u179C\u17C2\u1784\u179B\u17D2\u1798\u1798 (Strong Summary Statement)");
+    } else if (pi.summary && pi.summary.trim().length >= 30) {
+      score += 8;
+      feedback.push("\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u179F\u1784\u17D2\u1781\u17C1\u1794 (Summary) \u1782\u17BD\u179A\u1798\u17B6\u1793\u1799\u17C9\u17B6\u1784\u178F\u17B7\u1785 2 \u1791\u17C5 3 \u1794\u17D2\u179A\u1799\u17C4\u1782\u178A\u17BE\u1798\u17D2\u1794\u17B8\u1794\u1784\u17D2\u17A0\u17B6\u1789\u1796\u17B8\u1785\u17C6\u178E\u17BB\u1785\u1781\u17D2\u179B\u17B6\u17C6\u1784\u179A\u1794\u179F\u17CB\u17A2\u17D2\u1793\u1780");
+    } else {
+      feedback.push("\u1781\u17D2\u179C\u17C7\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u179F\u1784\u17D2\u1781\u17C1\u1794\u17A2\u17C6\u1796\u17B8\u1781\u17D2\u179B\u17BD\u1793\u17AF\u1784 (Professional Summary) \u179F\u1798\u17D2\u179A\u17B6\u1794\u17CB\u1791\u17B6\u1780\u17CB\u1791\u17B6\u1789 HR");
+    }
+    if (experiences.length >= 2) {
+      score += 15;
+      let hasDetailedTasks = true;
+      for (const exp of experiences) {
+        if (!exp.description || exp.description.trim().length < 40) {
+          hasDetailedTasks = false;
+          break;
+        }
+      }
+      if (hasDetailedTasks) {
+        score += 15;
+        strengths.push("\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD\u1780\u17B6\u179A\u1784\u17B6\u179A\u178F\u17D2\u179A\u17BC\u179C\u1794\u17B6\u1793\u179A\u17C0\u1794\u179A\u17B6\u1794\u17CB\u1799\u17C9\u17B6\u1784\u179B\u1798\u17D2\u17A2\u17B7\u178F (Actionable Experience Descriptions)");
+      } else {
+        score += 8;
+        feedback.push("\u1794\u1793\u17D2\u1790\u17C2\u1798\u179F\u1798\u17B7\u1791\u17D2\u1792\u1795\u179B (Achievements/Bullet Points) \u1780\u17D2\u1793\u17BB\u1784\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD\u1780\u17B6\u179A\u1784\u17B6\u179A\u1793\u17B8\u1798\u17BD\u1799\u17D7");
+      }
+    } else if (experiences.length === 1) {
+      score += 15;
+      feedback.push("\u1794\u17D2\u179A\u179F\u17B7\u1793\u1794\u17BE\u1798\u17B6\u1793 \u179F\u17BC\u1798\u1794\u1793\u17D2\u1790\u17C2\u1798\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD \u17AC\u1782\u1798\u17D2\u179A\u17C4\u1784\u1795\u17D2\u179F\u17C1\u1784\u17D7\u1791\u17C0\u178F");
+    } else {
+      feedback.push("\u1782\u17BD\u179A\u178F\u17C2\u1798\u17B6\u1793\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD\u1780\u17B6\u179A\u1784\u17B6\u179A \u17AC\u1780\u17B6\u179A\u1784\u17B6\u179A\u179F\u17D2\u1798\u17D0\u1782\u17D2\u179A\u1785\u17B7\u178F\u17D2\u178F\u1799\u17C9\u17B6\u1784\u17A0\u17C4\u1785 \u17E1 \u1780\u1793\u17D2\u179B\u17C2\u1784");
+    }
+    if (educations.length >= 1 && educations[0].degree && educations[0].school) {
+      score += 15;
+      strengths.push("\u1780\u1798\u17D2\u179A\u17B7\u178F\u179C\u1794\u17D2\u1794\u1792\u1798\u17CC \u1793\u17B7\u1784\u1780\u17B6\u179A\u179F\u17B7\u1780\u17D2\u179F\u17B6\u1798\u17B6\u1793\u1797\u17B6\u1796\u1785\u17D2\u1794\u17B6\u179F\u17CB\u179B\u17B6\u179F\u17CB (Clear Education Credentials)");
+    } else {
+      feedback.push("\u179F\u17BC\u1798\u1794\u17C6\u1796\u17C1\u1789\u1780\u1798\u17D2\u179A\u17B7\u178F\u179F\u1789\u17D2\u1789\u17B6\u1794\u178F\u17D2\u179A \u1793\u17B7\u1784\u1788\u17D2\u1798\u17C4\u17C7\u1782\u17D2\u179A\u17B9\u17C7\u179F\u17D2\u1790\u17B6\u1793\u179F\u17B7\u1780\u17D2\u179F\u17B6");
+    }
+    let skillScore = 0;
+    if (skills.length >= 4) {
+      skillScore += 10;
+      strengths.push(`\u1798\u17B6\u1793\u1787\u17C6\u1793\u17B6\u1789\u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7\u1785\u17C6\u1793\u17BD\u1793 ${skills.length} (Key Industry Skills)`);
+    } else if (skills.length >= 1) {
+      skillScore += 5;
+      feedback.push("\u1782\u17BD\u179A\u178A\u17B6\u1780\u17CB\u1787\u17C6\u1793\u17B6\u1789\u1794\u1785\u17D2\u1785\u17C1\u1780\u1791\u17C1\u179F \u17AC Soft Skills \u1799\u17C9\u17B6\u1784\u178F\u17B7\u1785\u1796\u17B8 4 \u1791\u17C5 6");
+    } else {
+      feedback.push("\u179F\u17BC\u1798\u1794\u1793\u17D2\u1790\u17C2\u1798\u1787\u17C6\u1793\u17B6\u1789 (Skills) \u179F\u17C6\u1781\u17B6\u1793\u17CB\u17D7\u179A\u1794\u179F\u17CB\u17A2\u17D2\u1793\u1780");
+    }
+    if (languages.length >= 1) {
+      skillScore += 5;
+    } else {
+      feedback.push("\u179F\u17BC\u1798\u1794\u1793\u17D2\u1790\u17C2\u1798\u1797\u17B6\u179F\u17B6\u178A\u17C2\u179B\u17A2\u17D2\u1793\u1780\u1785\u17C1\u17C7 (Languages)");
+    }
+    score += skillScore;
+    let grade = "A";
+    let badgeColor = "#10b981";
+    let label = "\u179B\u17D2\u17A2\u17A5\u178F\u1781\u17D2\u1785\u17C4\u17C7 (Excellent)";
+    if (score < 50) {
+      grade = "Needs Work";
+      badgeColor = "#ef4444";
+      label = "\u178F\u17D2\u179A\u17BC\u179C\u1780\u17B6\u179A\u1794\u17C6\u1796\u17C1\u1789\u1794\u1793\u17D2\u1790\u17C2\u1798 (Needs Work)";
+    } else if (score < 75) {
+      grade = "Good";
+      badgeColor = "#f59e0b";
+      label = "\u179B\u17D2\u17A2\u1798\u1792\u17D2\u1799\u1798 (Good)";
+    } else if (score < 90) {
+      grade = "Very Good";
+      badgeColor = "#3b82f6";
+      label = "\u179B\u17D2\u17A2\u1794\u17D2\u179A\u179F\u17BE\u179A (Very Good)";
+    }
+    return {
+      score: Math.min(score, maxScore),
+      grade,
+      label,
+      badgeColor,
+      feedback,
+      strengths
+    };
+  }
+
+  // js/coverLetter.js
+  function generateCoverLetter(profileData, targetCompany = "\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793 / Company Name", targetJobTitle = "") {
+    const pi = profileData.personalInfo || {};
+    const experiences = profileData.experiences || [];
+    const skills = profileData.skills || [];
+    const educations = profileData.educations || [];
+    const jobTitle = targetJobTitle || pi.title || "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784\u1780\u17B6\u179A\u1784\u17B6\u179A";
+    const name = pi.fullName || "\u1788\u17D2\u1798\u17C4\u17C7\u1794\u17C1\u1780\u17D2\u1781\u1787\u1793";
+    const email = pi.email || "email@example.com";
+    const phone = pi.phone || "012 345 678";
+    const today = (/* @__PURE__ */ new Date()).toLocaleDateString("km-KH", { year: "numeric", month: "long", day: "numeric" });
+    const recentExp = experiences.length > 0 ? experiences[0] : null;
+    const recentEdu = educations.length > 0 ? educations[0] : null;
+    const topSkills = skills.slice(0, 4).map((s) => s.name).join(", ") || "\u1787\u17C6\u1793\u17B6\u1789\u1791\u17C6\u1793\u17B6\u1780\u17CB\u1791\u17C6\u1793\u1784 \u1793\u17B7\u1784\u1780\u17B6\u179A\u1784\u17B6\u179A\u1787\u17B6\u1780\u17D2\u179A\u17BB\u1798";
+    const coverLetterKhmer = `\u1790\u17D2\u1784\u17C3\u1791\u17B8 ${today}
+
+\u1795\u17D2\u1789\u17BE\u1787\u17BC\u1793\u17D6 \u1793\u17B6\u1799\u1780\u178A\u17D2\u178B\u17B6\u1793\u1792\u1793\u1792\u17B6\u1793\u1798\u1793\u17BB\u179F\u17D2\u179F (HR Department)
+\u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793/\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793\u17D6 ${targetCompany}
+
+\u1780\u1798\u17D2\u1798\u179C\u178F\u17D2\u1790\u17BB\u17D6 \u1796\u17B6\u1780\u17D2\u1799\u179F\u17D2\u1793\u17BE\u179F\u17BB\u17C6\u1794\u1798\u17D2\u179A\u17BE\u1780\u17B6\u179A\u1784\u17B6\u179A\u1780\u17D2\u1793\u17BB\u1784\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784 "${jobTitle}"
+
+\u1782\u17C4\u179A\u1796\u179B\u17C4\u1780/\u179B\u17C4\u1780\u179F\u17D2\u179A\u17B8\u1794\u17D2\u179A\u1792\u17B6\u1793\u1795\u17D2\u1793\u17C2\u1780\u1787\u17D2\u179A\u17BE\u179F\u179A\u17BE\u179F\u1794\u17BB\u1782\u17D2\u1782\u179B\u17B7\u1780,
+
+\u1781\u17D2\u1789\u17BB\u17C6\u1794\u17B6\u1791/\u1793\u17B6\u1784\u1781\u17D2\u1789\u17BB\u17C6\u1788\u17D2\u1798\u17C4\u17C7 ${name} \u1798\u17B6\u1793\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u179F\u17C4\u1798\u1793\u179F\u17D2\u179F\u179A\u17B8\u1780\u179A\u17B6\u1799\u1787\u17B6\u1781\u17D2\u179B\u17B6\u17C6\u1784\u1780\u17D2\u1793\u17BB\u1784\u1780\u17B6\u179A\u178A\u17B6\u1780\u17CB\u1796\u17B6\u1780\u17D2\u1799\u179F\u17D2\u1793\u17BE\u179F\u17BB\u17C6\u1794\u1798\u17D2\u179A\u17BE\u1780\u17B6\u179A\u1784\u17B6\u179A\u1787\u17B6 "${jobTitle}" \u1793\u17C5 ${targetCompany} \u1794\u1793\u17D2\u1791\u17B6\u1794\u17CB\u1796\u17B8\u1794\u17B6\u1793\u1783\u17BE\u1789\u1780\u17B6\u179A\u1794\u17D2\u179A\u1780\u17B6\u179F\u1787\u17D2\u179A\u17BE\u179F\u179A\u17BE\u179F\u1794\u17BB\u1782\u17D2\u1782\u179B\u17B7\u1780\u179A\u1794\u179F\u17CB\u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793\u17D4
+
+\u1795\u17D2\u17A2\u17C2\u1780\u179B\u17BE\u1794\u17D2\u179A\u179C\u178F\u17D2\u178F\u17B7\u179A\u17BC\u1794 \u1793\u17B7\u1784\u1794\u1791\u1796\u17B7\u179F\u17C4\u1792\u1793\u17CD\u179A\u1794\u179F\u17CB\u1781\u17D2\u1789\u17BB\u17C6 ${recentExp ? `\u1780\u1793\u17D2\u179B\u1784\u1798\u1780\u1780\u17D2\u1793\u17BB\u1784\u1793\u17B6\u1798\u1787\u17B6 ${recentExp.role} \u1793\u17C5 ${recentExp.company}` : `\u1780\u17D2\u1793\u17BB\u1784\u1780\u17B6\u179A\u179F\u17B7\u1780\u17D2\u179F\u17B6\u1795\u17D2\u1793\u17C2\u1780 ${recentEdu ? recentEdu.degree : "\u1787\u17C6\u1793\u17B6\u1789\u179C\u17B7\u1787\u17D2\u1787\u17B6\u1787\u17B8\u179C\u17C8"}`} \u1781\u17D2\u1789\u17BB\u17C6\u1794\u17B6\u1793\u1796\u1784\u17D2\u179A\u17B9\u1784\u179F\u1798\u178F\u17D2\u1790\u1797\u17B6\u1796\u179F\u17D2\u1793\u17BC\u179B\u179B\u17BE ${topSkills}\u17D4 \u1781\u17D2\u1789\u17BB\u17C6\u1787\u17BF\u1787\u17B6\u1780\u17CB\u1799\u17C9\u17B6\u1784\u1798\u17BB\u178F\u1798\u17B6\u17C6\u1790\u17B6 \u1785\u17C6\u178E\u17C1\u17C7\u178A\u17B9\u1784 \u1793\u17B7\u1784\u1780\u17B6\u179A\u1794\u17D2\u178F\u17C1\u1787\u17D2\u1789\u17B6\u1785\u17B7\u178F\u17D2\u178F\u1781\u17D2\u1796\u179F\u17CB\u179A\u1794\u179F\u17CB\u1781\u17D2\u1789\u17BB\u17C6 \u1793\u17B9\u1784\u17A2\u17B6\u1785\u1785\u17BC\u179B\u179A\u17BD\u1798\u1785\u17C6\u178E\u17C2\u1780\u1799\u17C9\u17B6\u1784\u179F\u1780\u1798\u17D2\u1798\u1780\u17D2\u1793\u17BB\u1784\u1780\u17B6\u179A\u17A2\u1797\u17B7\u179C\u178C\u17D2\u178D \u1793\u17B7\u1784\u179F\u1798\u17D2\u179A\u17C1\u1785\u1782\u17C4\u179B\u178A\u17C5\u179A\u1794\u179F\u17CB\u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793\u17D4
+
+\u1781\u17D2\u1789\u17BB\u17C6\u1798\u17B6\u1793\u1780\u17D2\u178F\u17B8\u179A\u17C6\u1797\u17BE\u1794 \u1793\u17B7\u1784\u178F\u17D2\u179A\u17C0\u1798\u1781\u17D2\u179B\u17BD\u1793\u179A\u17BD\u1785\u1787\u17B6\u179F\u17D2\u179A\u17C1\u1785\u179F\u1798\u17D2\u179A\u17B6\u1794\u17CB\u1780\u17B6\u179A\u179F\u1798\u17D2\u1797\u17B6\u179F\u1793\u17CD\u1795\u17D2\u1791\u17B6\u179B\u17CB \u178A\u17BE\u1798\u17D2\u1794\u17B8\u1794\u1784\u17D2\u17A0\u17B6\u1789\u1794\u1793\u17D2\u1790\u17C2\u1798\u17A2\u17C6\u1796\u17B8\u179F\u1798\u178F\u17D2\u1790\u1797\u17B6\u1796 \u1793\u17B7\u1784\u1785\u17C6\u178E\u1784\u17CB\u1785\u17C6\u178E\u17BC\u179B\u1785\u17B7\u178F\u17D2\u178F\u179A\u1794\u179F\u17CB\u1781\u17D2\u1789\u17BB\u17C6\u1785\u17C6\u1796\u17C4\u17C7\u178F\u17BD\u1793\u17B6\u1791\u17B8\u1793\u17C1\u17C7\u17D4
+
+\u179F\u17BC\u1798\u179B\u17C4\u1780/\u179B\u17C4\u1780\u179F\u17D2\u179A\u17B8 \u1791\u1791\u17BD\u179B\u1793\u17BC\u179C\u1780\u17B6\u179A\u1782\u17C4\u179A\u1796\u178A\u17CF\u1781\u17D2\u1796\u1784\u17CB\u1781\u17D2\u1796\u179F\u17CB\u17A2\u17C6\u1796\u17B8\u1781\u17D2\u1789\u17BB\u17C6\u1794\u17B6\u1791/\u1793\u17B6\u1784\u1781\u17D2\u1789\u17BB\u17C6\u17D4
+
+\u178A\u17C4\u1799\u179F\u17C1\u1785\u1780\u17D2\u178F\u17B8\u1782\u17C4\u179A\u1796,
+
+${name}
+\u1791\u17BC\u179A\u179F\u17D0\u1796\u17D2\u1791\u17D6 ${phone}
+\u17A2\u17CA\u17B8\u1798\u17C2\u179B\u17D6 ${email}`;
+    const todayEn = (/* @__PURE__ */ new Date()).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    const coverLetterEnglish = `${todayEn}
+
+Hiring Manager
+${targetCompany}
+
+Subject: Application for the position of "${jobTitle}"
+
+Dear Hiring Team,
+
+I am writing to express my strong interest in the "${jobTitle}" position at ${targetCompany}. With my proven background ${recentExp ? `as a ${recentExp.role} at ${recentExp.company}` : `in ${recentEdu ? recentEdu.degree : "my field"}`}, combined with key proficiencies in ${topSkills}, I am confident in my ability to make an immediate, positive contribution to your team.
+
+Throughout my career, I have demonstrated a strong commitment to excellence, problem-solving, and continuous learning. I admire ${targetCompany}'s achievements and would be thrilled to bring my passion and dedication to your organization.
+
+Thank you for your time and consideration. I welcome the opportunity to discuss how my skillset aligns with your team's goals in an interview.
+
+Sincerely,
+
+${name}
+Phone: ${phone}
+Email: ${email}`;
+    return {
+      khmer: coverLetterKhmer,
+      english: coverLetterEnglish
+    };
+  }
+
   // js/app.js
   var state = {
     activeTemplate: "charcoal",
     directEditMode: false,
     zoomLevel: 100,
+    selectedFont: "'Kantumruy Pro', sans-serif",
     data: JSON.parse(JSON.stringify(sampleProfiles.cambodian))
   };
   var templateRenderers = {
@@ -3887,6 +4177,164 @@
         };
         reader.readAsText(file);
       }
+    });
+    const fontSelectEl = document.getElementById("select-font-family");
+    if (fontSelectEl) {
+      fontSelectEl.addEventListener("change", (e) => {
+        state.selectedFont = e.target.value;
+        document.documentElement.style.setProperty("--cv-font-family", state.selectedFont);
+        const canvas = document.getElementById("resume-canvas-container");
+        if (canvas) {
+          canvas.style.fontFamily = state.selectedFont;
+        }
+        showToast("\u1794\u17B6\u1793\u1794\u17D2\u178F\u17BC\u179A\u1796\u17BB\u1798\u17D2\u1796\u17A2\u1780\u17D2\u179F\u179A (Font Changed)!");
+      });
+    }
+    const modalAts = document.getElementById("modal-ats-score");
+    const btnOpenAts = document.getElementById("btn-open-ats-score");
+    const btnCloseAts = document.getElementById("btn-close-ats-modal");
+    const btnAtsFix = document.getElementById("btn-ats-fix-action");
+    function renderAtsScoreModal() {
+      const res = calculateAtsScore(state.data);
+      const scoreVal = document.getElementById("ats-score-value");
+      const circle = document.getElementById("ats-score-circle");
+      const gradeBadge = document.getElementById("ats-grade-badge");
+      const strengthsList = document.getElementById("ats-strengths-list");
+      const suggestionsList = document.getElementById("ats-suggestions-list");
+      if (scoreVal) scoreVal.textContent = res.score;
+      if (circle) {
+        circle.style.borderColor = res.badgeColor;
+        circle.style.boxShadow = `0 0 20px ${res.badgeColor}40`;
+      }
+      if (gradeBadge) {
+        gradeBadge.textContent = `${res.grade} - ${res.label}`;
+        gradeBadge.style.background = res.badgeColor;
+      }
+      if (strengthsList) {
+        strengthsList.innerHTML = res.strengths.length > 0 ? res.strengths.map((s) => `<li><i class="fa-solid fa-check" style="color: #10b981;"></i> <span>${s}</span></li>`).join("") : `<li><span style="color: #94a3b8;">\u1798\u17B7\u1793\u1791\u17B6\u1793\u17CB\u1798\u17B6\u1793\u1785\u17C6\u178E\u17BB\u1785\u1781\u17D2\u179B\u17B6\u17C6\u1784\u1796\u17C1\u1789\u179B\u17C1\u1789</span></li>`;
+      }
+      if (suggestionsList) {
+        suggestionsList.innerHTML = res.feedback.length > 0 ? res.feedback.map((f) => `<li><i class="fa-solid fa-arrow-right" style="color: #f59e0b;"></i> <span>${f}</span></li>`).join("") : `<li><span style="color: #10b981;"><i class="fa-solid fa-check-double"></i> CV \u179A\u1794\u179F\u17CB\u17A2\u17D2\u1793\u1780\u1798\u17B6\u1793\u1796\u17B7\u1793\u17D2\u1791\u17BB\u1781\u17D2\u1796\u179F\u17CB \u1793\u17B7\u1784\u179B\u17D2\u17A2\u17A5\u178F\u1781\u17D2\u1785\u17C4\u17C7\u17A0\u17BE\u1799!</span></li>`;
+      }
+    }
+    if (btnOpenAts && modalAts) {
+      btnOpenAts.addEventListener("click", () => {
+        renderAtsScoreModal();
+        modalAts.classList.add("active");
+      });
+    }
+    if (btnCloseAts && modalAts) {
+      btnCloseAts.addEventListener("click", () => {
+        modalAts.classList.remove("active");
+      });
+    }
+    if (btnAtsFix && modalAts) {
+      btnAtsFix.addEventListener("click", () => {
+        modalAts.classList.remove("active");
+        const personalTab = document.querySelector('.nav-tab-btn[data-tab="tab-personal"]');
+        if (personalTab) personalTab.click();
+      });
+    }
+    const modalCl = document.getElementById("modal-cover-letter");
+    const btnOpenCl = document.getElementById("btn-open-cover-letter");
+    const btnCloseCl = document.getElementById("btn-close-cl-modal");
+    const btnClKm = document.getElementById("btn-cl-lang-km");
+    const btnClEn = document.getElementById("btn-cl-lang-en");
+    const btnClRegen = document.getElementById("btn-cl-regenerate");
+    const btnClCopy = document.getElementById("btn-cl-copy");
+    const btnClPrint = document.getElementById("btn-cl-print");
+    const clCompanyInput = document.getElementById("cl-target-company");
+    const clJobInput = document.getElementById("cl-target-job");
+    const clTextarea = document.getElementById("cl-content-textarea");
+    let clCurrentLang = "kh";
+    function refreshCoverLetter() {
+      const comp = clCompanyInput ? clCompanyInput.value || "\u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 / \u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793" : "\u179F\u17D2\u1790\u17B6\u1794\u17D0\u1793 / \u1780\u17D2\u179A\u17BB\u1798\u17A0\u17CA\u17BB\u1793";
+      const job = clJobInput ? clJobInput.value || state.data.personalInfo?.title || "\u1798\u17BB\u1781\u178F\u17C6\u178E\u17C2\u1784\u1780\u17B6\u179A\u1784\u17B6\u179A" : "";
+      const generated = generateCoverLetter(state.data, comp, job);
+      if (clTextarea) {
+        clTextarea.value = clCurrentLang === "kh" ? generated.khmer : generated.english;
+      }
+    }
+    if (btnOpenCl && modalCl) {
+      btnOpenCl.addEventListener("click", () => {
+        if (clJobInput && !clJobInput.value) {
+          clJobInput.value = state.data.personalInfo?.title || "Senior Software Engineer";
+        }
+        refreshCoverLetter();
+        modalCl.classList.add("active");
+      });
+    }
+    if (btnCloseCl && modalCl) {
+      btnCloseCl.addEventListener("click", () => {
+        modalCl.classList.remove("active");
+      });
+    }
+    if (btnClKm) {
+      btnClKm.addEventListener("click", () => {
+        clCurrentLang = "kh";
+        btnClKm.classList.remove("btn-secondary");
+        btnClKm.classList.add("btn-primary");
+        btnClEn.classList.remove("btn-primary");
+        btnClEn.classList.add("btn-secondary");
+        refreshCoverLetter();
+      });
+    }
+    if (btnClEn) {
+      btnClEn.addEventListener("click", () => {
+        clCurrentLang = "en";
+        btnClEn.classList.remove("btn-secondary");
+        btnClEn.classList.add("btn-primary");
+        btnClKm.classList.remove("btn-primary");
+        btnClKm.classList.add("btn-secondary");
+        refreshCoverLetter();
+      });
+    }
+    if (btnClRegen) {
+      btnClRegen.addEventListener("click", refreshCoverLetter);
+    }
+    if (clCompanyInput) clCompanyInput.addEventListener("input", refreshCoverLetter);
+    if (clJobInput) clJobInput.addEventListener("input", refreshCoverLetter);
+    if (btnClCopy && clTextarea) {
+      btnClCopy.addEventListener("click", () => {
+        navigator.clipboard.writeText(clTextarea.value).then(() => {
+          showToast("\u{1F4CB} \u1794\u17B6\u1793\u1785\u1798\u17D2\u179B\u1784 Cover Letter \u1791\u17C5\u1780\u17B6\u1793\u17CB Clipboard!", "fa-circle-check");
+        }).catch(() => {
+          clTextarea.select();
+          document.execCommand("copy");
+          showToast("\u{1F4CB} \u1794\u17B6\u1793\u1785\u1798\u17D2\u179B\u1784 Cover Letter!", "fa-circle-check");
+        });
+      });
+    }
+    if (btnClPrint && clTextarea) {
+      btnClPrint.addEventListener("click", () => {
+        const printWin = window.open("", "_blank");
+        if (printWin) {
+          printWin.document.write(`
+          <html>
+            <head>
+              <title>Cover Letter - ${state.data.personalInfo?.fullName || "Candidate"}</title>
+              <style>
+                body { font-family: 'Kantumruy Pro', -apple-system, sans-serif; font-size: 14px; line-height: 1.8; color: #1e293b; padding: 40px; white-space: pre-wrap; }
+              </style>
+            </head>
+            <body>${clTextarea.value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</body>
+          </html>
+        `);
+          printWin.document.close();
+          printWin.focus();
+          setTimeout(() => {
+            printWin.print();
+          }, 300);
+        }
+      });
+    }
+    initDevToolsGuard();
+    initSecurityIntegrityWatcher((verifiedBalance) => {
+      paymentState.coins = verifiedBalance;
+      const coinElements = document.querySelectorAll(".user-coin-val");
+      coinElements.forEach((el) => {
+        el.innerText = verifiedBalance;
+      });
     });
     updateCoinBalance(0);
     syncStateToForm();

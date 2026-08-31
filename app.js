@@ -30,12 +30,16 @@ import {
   stopPaymentPolling,
   BAKONG_CONFIG
 } from './payment.js';
+import { initDevToolsGuard, initSecurityIntegrityWatcher, SecureStorage } from './security.js';
+import { calculateAtsScore } from './atsScore.js';
+import { generateCoverLetter } from './coverLetter.js';
 
 // Application State
 const state = {
   activeTemplate: 'charcoal',
   directEditMode: false,
   zoomLevel: 100,
+  selectedFont: "'Kantumruy Pro', sans-serif",
   data: JSON.parse(JSON.stringify(sampleProfiles.cambodian))
 };
 
@@ -1264,6 +1268,185 @@ function initApp() {
       };
       reader.readAsText(file);
     }
+  });
+
+  // 14. Font Selection (Khmer & International Typography)
+  const fontSelectEl = document.getElementById('select-font-family');
+  if (fontSelectEl) {
+    fontSelectEl.addEventListener('change', (e) => {
+      state.selectedFont = e.target.value;
+      document.documentElement.style.setProperty('--cv-font-family', state.selectedFont);
+      const canvas = document.getElementById('resume-canvas-container');
+      if (canvas) {
+        canvas.style.fontFamily = state.selectedFont;
+      }
+      showToast('បានប្តូរពុម្ពអក្សរ (Font Changed)!');
+    });
+  }
+
+  // 15. ATS Resume Score Modal & Logic
+  const modalAts = document.getElementById('modal-ats-score');
+  const btnOpenAts = document.getElementById('btn-open-ats-score');
+  const btnCloseAts = document.getElementById('btn-close-ats-modal');
+  const btnAtsFix = document.getElementById('btn-ats-fix-action');
+
+  function renderAtsScoreModal() {
+    const res = calculateAtsScore(state.data);
+    const scoreVal = document.getElementById('ats-score-value');
+    const circle = document.getElementById('ats-score-circle');
+    const gradeBadge = document.getElementById('ats-grade-badge');
+    const strengthsList = document.getElementById('ats-strengths-list');
+    const suggestionsList = document.getElementById('ats-suggestions-list');
+
+    if (scoreVal) scoreVal.textContent = res.score;
+    if (circle) {
+      circle.style.borderColor = res.badgeColor;
+      circle.style.boxShadow = `0 0 20px ${res.badgeColor}40`;
+    }
+    if (gradeBadge) {
+      gradeBadge.textContent = `${res.grade} - ${res.label}`;
+      gradeBadge.style.background = res.badgeColor;
+    }
+    if (strengthsList) {
+      strengthsList.innerHTML = res.strengths.length > 0
+        ? res.strengths.map(s => `<li><i class="fa-solid fa-check" style="color: #10b981;"></i> <span>${s}</span></li>`).join('')
+        : `<li><span style="color: #94a3b8;">មិនទាន់មានចំណុចខ្លាំងពេញលេញ</span></li>`;
+    }
+    if (suggestionsList) {
+      suggestionsList.innerHTML = res.feedback.length > 0
+        ? res.feedback.map(f => `<li><i class="fa-solid fa-arrow-right" style="color: #f59e0b;"></i> <span>${f}</span></li>`).join('')
+        : `<li><span style="color: #10b981;"><i class="fa-solid fa-check-double"></i> CV របស់អ្នកមានពិន្ទុខ្ពស់ និងល្អឥតខ្ចោះហើយ!</span></li>`;
+    }
+  }
+
+  if (btnOpenAts && modalAts) {
+    btnOpenAts.addEventListener('click', () => {
+      renderAtsScoreModal();
+      modalAts.classList.add('active');
+    });
+  }
+  if (btnCloseAts && modalAts) {
+    btnCloseAts.addEventListener('click', () => {
+      modalAts.classList.remove('active');
+    });
+  }
+  if (btnAtsFix && modalAts) {
+    btnAtsFix.addEventListener('click', () => {
+      modalAts.classList.remove('active');
+      // Switch to personal tab to edit
+      const personalTab = document.querySelector('.nav-tab-btn[data-tab="tab-personal"]');
+      if (personalTab) personalTab.click();
+    });
+  }
+
+  // 16. Cover Letter Generator Modal & Logic
+  const modalCl = document.getElementById('modal-cover-letter');
+  const btnOpenCl = document.getElementById('btn-open-cover-letter');
+  const btnCloseCl = document.getElementById('btn-close-cl-modal');
+  const btnClKm = document.getElementById('btn-cl-lang-km');
+  const btnClEn = document.getElementById('btn-cl-lang-en');
+  const btnClRegen = document.getElementById('btn-cl-regenerate');
+  const btnClCopy = document.getElementById('btn-cl-copy');
+  const btnClPrint = document.getElementById('btn-cl-print');
+  const clCompanyInput = document.getElementById('cl-target-company');
+  const clJobInput = document.getElementById('cl-target-job');
+  const clTextarea = document.getElementById('cl-content-textarea');
+
+  let clCurrentLang = 'kh';
+
+  function refreshCoverLetter() {
+    const comp = clCompanyInput ? (clCompanyInput.value || 'ស្ថាប័ន / ក្រុមហ៊ុន') : 'ស្ថាប័ន / ក្រុមហ៊ុន';
+    const job = clJobInput ? (clJobInput.value || state.data.personalInfo?.title || 'មុខតំណែងការងារ') : '';
+    const generated = generateCoverLetter(state.data, comp, job);
+    if (clTextarea) {
+      clTextarea.value = clCurrentLang === 'kh' ? generated.khmer : generated.english;
+    }
+  }
+
+  if (btnOpenCl && modalCl) {
+    btnOpenCl.addEventListener('click', () => {
+      if (clJobInput && !clJobInput.value) {
+        clJobInput.value = state.data.personalInfo?.title || 'Senior Software Engineer';
+      }
+      refreshCoverLetter();
+      modalCl.classList.add('active');
+    });
+  }
+  if (btnCloseCl && modalCl) {
+    btnCloseCl.addEventListener('click', () => {
+      modalCl.classList.remove('active');
+    });
+  }
+  if (btnClKm) {
+    btnClKm.addEventListener('click', () => {
+      clCurrentLang = 'kh';
+      btnClKm.classList.remove('btn-secondary');
+      btnClKm.classList.add('btn-primary');
+      btnClEn.classList.remove('btn-primary');
+      btnClEn.classList.add('btn-secondary');
+      refreshCoverLetter();
+    });
+  }
+  if (btnClEn) {
+    btnClEn.addEventListener('click', () => {
+      clCurrentLang = 'en';
+      btnClEn.classList.remove('btn-secondary');
+      btnClEn.classList.add('btn-primary');
+      btnClKm.classList.remove('btn-primary');
+      btnClKm.classList.add('btn-secondary');
+      refreshCoverLetter();
+    });
+  }
+  if (btnClRegen) {
+    btnClRegen.addEventListener('click', refreshCoverLetter);
+  }
+  if (clCompanyInput) clCompanyInput.addEventListener('input', refreshCoverLetter);
+  if (clJobInput) clJobInput.addEventListener('input', refreshCoverLetter);
+
+  if (btnClCopy && clTextarea) {
+    btnClCopy.addEventListener('click', () => {
+      navigator.clipboard.writeText(clTextarea.value).then(() => {
+        showToast('📋 បានចម្លង Cover Letter ទៅកាន់ Clipboard!', 'fa-circle-check');
+      }).catch(() => {
+        clTextarea.select();
+        document.execCommand('copy');
+        showToast('📋 បានចម្លង Cover Letter!', 'fa-circle-check');
+      });
+    });
+  }
+
+  if (btnClPrint && clTextarea) {
+    btnClPrint.addEventListener('click', () => {
+      const printWin = window.open('', '_blank');
+      if (printWin) {
+        printWin.document.write(`
+          <html>
+            <head>
+              <title>Cover Letter - ${(state.data.personalInfo?.fullName || 'Candidate')}</title>
+              <style>
+                body { font-family: 'Kantumruy Pro', -apple-system, sans-serif; font-size: 14px; line-height: 1.8; color: #1e293b; padding: 40px; white-space: pre-wrap; }
+              </style>
+            </head>
+            <body>${clTextarea.value.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</body>
+          </html>
+        `);
+        printWin.document.close();
+        printWin.focus();
+        setTimeout(() => {
+          printWin.print();
+        }, 300);
+      }
+    });
+  }
+
+  // 17. Initialize Security Guards & Anti-Tamper Integrity
+  initDevToolsGuard();
+  initSecurityIntegrityWatcher((verifiedBalance) => {
+    paymentState.coins = verifiedBalance;
+    const coinElements = document.querySelectorAll('.user-coin-val');
+    coinElements.forEach(el => {
+      el.innerText = verifiedBalance;
+    });
   });
 
   // Initial Boot
